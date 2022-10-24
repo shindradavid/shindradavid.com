@@ -9,6 +9,12 @@
 	<a href="/courses">Courses</a>
 </nav>
 
+<svelte:head>
+	<link rel="manifest" href="manifest.json" />
+	<meta name="theme-color" content="#1c1c1c" />
+	<meta property="application-name" content="ShindraDavid" />
+</svelte:head>
+
 <main>
 	<slot />
 </main>

@@ -1,0 +1,15 @@
+{
+	"$schema": "https://json.schemastore.org/web-manifest-combined.json",
+	"name": "ShindraDavid",
+	"short_name": "ShindraDavid",
+	"description": "A web developer based in Uganda",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#EEEEEE",
+	"icons": [],
+	"url_handlers": [
+		{
+			"origin": "https://devdocs.io"
+		}
+	]
+}
