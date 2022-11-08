@@ -1,0 +1,49 @@
+/* spacing */
+$spacing-xs: 0.4rem;
+$spacing-sm: 0.8rem;
+$spacing-md: 1.6rem;
+$spacing-lg: 2.4rem;
+$spacing-xl: 3.2rem;
+$spacing-2xl: 4rem;
+$spacing-3xl: 4.8rem;
+$spacing-4xl: 5.6rem;
+$spacing-5xl: 6.4rem;
+$spacing-6xl: 7.2rem;
+$spacing-7xl: 8rem;
+$spacing-8xl: 8.8rem;
+$spacing-9xl: 9.6rem;
+$spacing-xxl: 10.4rem;
+$spacing-2xxl: 12rem;
+$spacing-3xxl: 12.8rem;
+// box-shadow
+$shadow-xs: 0 1px 4px hsla(0, 0%, 0%, 0.16);
+$shadow-sm: 0 2px 8px hsla(0, 0%, 0%, 0.16);
+$shadow-md: 0 4px 16px hsla(0, 0%, 0%, 0.16);
+$shadow-lg: 0 8px 24px hsla(0, 0%, 0%, 0.16);
+// animation
+$animation-timing-100: 100ms;
+$animation-timing-200: 200ms;
+$animation-timing-300: 300ms;
+$animation-timing-400: 400ms;
+$animation-ease-out-curve: cubic-bezier(0.2, 0.8, 0.4, 1);
+$animation-ease-in-curve: cubic-bezier(0.8, 0.2, 0.6, 1);
+$animation-ease-in-out-curve: cubic-bezier(0.4, 0, 0.2, 1);
+// border-radius
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$radius-xl: 32px;
+$radius-2xl: 40px;
+$radius-3xl: 48px;
+$radius-4xl: 56px;
+$radius-5xl: 64px;
+// heights
+$header-height: 52px;
+// z-index
+$layer-loader: 50;
+$layer-1: 40; // floating nav
+$layer-2: 30; // popups, modals
+$layer-3: 20; // fabs
+$layer-4: 10; // overlays
+$layer-5: 5;

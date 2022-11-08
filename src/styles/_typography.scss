@@ -1,0 +1,111 @@
+@use './abstracts/mixins' as *;
+@use './abstracts/variables' as *;
+
+:root {
+	/* font-family */
+	--ff-serif: sans-serif;
+	--ff-sans: 'Poppins', Helvetica, Arial, sans-serif;
+	--ff-mono: 'Fira Code', 'Fira Mono', monospace;
+	--ff-body: var(--ff-sans);
+	--ff-heading: var(--ff-sans);
+	/* font-size */
+	font-size: 62.5%;
+	--fs-xs: 1.2rem;
+	--fs-sm: 1.4rem;
+	--fs-base: 1.6rem;
+	--fs-md: 1.8rem;
+	--fs-lg: 2.4rem;
+	--fs-xl: 3.2rem;
+	--fs-2xl: 4.8rem;
+
+	@include screen-lg {
+		--fs-xs: 1.4rem;
+		--fs-sm: 1.6rem;
+		--fs-base: 1.8rem;
+		--fs-md: 2.4rem;
+		--fs-lg: 3.2rem;
+		--fs-xl: 4.8rem;
+		--fs-2xl: 5.6rem;
+	}
+
+	@supports (font-size: clamp(1.6rem, 1.536rem + 0.18vw, 1.8rem)) {
+		--fs-xs: clamp(1.2rem, 1.136rem + 0.18vh, 1.4rem);
+		--fs-sm: clamp(1.4rem, 1.22rem + 0.18vh, 1.6rem);
+		--fs-base: clamp(1.6rem, 1.536rem + 0.18vw, 1.8rem);
+		--fs-md: clamp(1.8rem, 1.776rem + 0.71vw, 2.4rem);
+		--fs-lg: clamp(2.4rem, 2rem + 1.07vw, 3.2rem);
+		--fs-xl: clamp(3.2rem, 2.22rem + 1.79vw, 4.8rem);
+		--fs-2xl: clamp(4.8rem, 2.22rem + 1.79vw, 5.6rem);
+	}
+}
+
+body {
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	line-height: 1.4;
+	font-size: var(--fs-base);
+	font-family: var(--ff-body);
+}
+
+p {
+	margin: $spacing-xs 0 $spacing-lg 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: 1.2;
+	font-family: var(--ff-heading);
+}
+
+h1 {
+	font-size: var(--fs-xl);
+	font-weight: 700;
+	margin: $spacing-sm 0;
+}
+
+h2 {
+	font-size: var(--fs-lg);
+	font-weight: 600;
+	margin: $spacing-2xl 0 $spacing-xs 0;
+}
+
+h3 {
+	font-size: var(--fs-md);
+	font-weight: 600;
+	margin: $spacing-md 0 $spacing-xs 0;
+}
+
+html {
+	scroll-padding-top: $header-height;
+}
+
+.article {
+	h1 {
+		font-size: var(--fs-xl);
+		font-weight: 700;
+		margin: $spacing-sm 0;
+	}
+
+	h2 {
+		font-size: var(--fs-lg);
+		font-weight: 600;
+		margin: $spacing-2xl 0 $spacing-xs 0;
+	}
+
+	h3 {
+		font-size: var(--fs-md);
+		font-weight: 600;
+		margin: $spacing-md 0 $spacing-xs 0;
+	}
+
+	p {
+		margin: $spacing-xs 0 $spacing-lg 0;
+	}
+}

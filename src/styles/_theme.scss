@@ -1,0 +1,78 @@
+@use 'sass:color';
+@use './abstracts/mixins' as *;
+@use './abstracts/pallette' as *;
+
+:root {
+	--accent-color: ;
+	/* background-color */
+	--bg-primary: ;
+	--bg-secondary: ;
+	--bg-tertiary: ;
+	--bg-btn: ;
+	--bg-success: ;
+	--bg-info: ;
+	--bg-warning: ;
+	--bg-error: ;
+	/* text-color */
+	--txt-primary: ;
+	--txt-secondary: ;
+	--txt-tertiary: ;
+	--txt-btn: ;
+	--txt-btn-secondary: ;
+	--txt-success: ;
+	--txt-info: ;
+	--txt-warning: ;
+	--txt-error: ;
+	/* shadows */
+	--shadow-xs: 0 1px 4px #{$shadow-color};
+	--shadow-sm: 0 2px 8px #{$shadow-color};
+	--shadow-md: 0 4px 16px #{$shadow-color};
+	--shadow-lg: 0 8px 24px #{$shadow-color};
+	--divider: #{color.adjust($slate-200, $alpha: -0.2)};
+}
+
+/* width */
+::-webkit-scrollbar {
+	height: 4px;
+	width: 4px;
+}
+
+/* track */
+::-webkit-scrollbar-track {
+	background: none;
+}
+
+/* handle */
+::-webkit-scrollbar-thumb {
+	background-color: #{$gray-900};
+}
+
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background-color: #{color.adjust($gray-900, $lightness: 6%)};
+}
+
+@include screen-lg {
+	/* width */
+	::-webkit-scrollbar {
+		height: 8px;
+		width: 8px;
+	}
+}
+
+body {
+	color: var(--txt-secondary);
+	background-color: var(--bg-primary);
+	overflow-x: hidden;
+}
+
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+	color: var(--txt-primary);
+}

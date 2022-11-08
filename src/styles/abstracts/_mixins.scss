@@ -1,0 +1,118 @@
+@use './variables' as *;
+@use './pallette' as *;
+
+/*
+  MEDIA QUERIES
+
+  We use mobile first breakpoint system, any styles not wrapped in a media query or any of the
+  preceding mixins will apply to all screen sizes.
+*/
+
+@mixin screen-sm {
+	@media screen and (max-width: 480px) {
+		@content;
+	}
+}
+
+@mixin screen-md {
+	@media screen and (min-width: 480px) {
+		@content;
+	}
+}
+
+@mixin screen-lg {
+	@media screen and (min-width: 768px) {
+		@content;
+	}
+}
+
+@mixin screen-xl {
+	@media screen and (min-width: 1024px) {
+		@content;
+	}
+}
+
+@mixin screen-2xl {
+	@media screen and (min-width: 1280px) {
+		@content;
+	}
+}
+
+@mixin screen-3xl {
+	@media screen and (min-width: 1440px) {
+		@content;
+	}
+}
+
+/* utility mixins */
+
+@mixin section-lr-padding {
+	padding-left: $spacing-md;
+	padding-right: $spacing-md;
+	@include screen-md {
+		padding-left: $spacing-lg;
+		padding-right: $spacing-lg;
+	}
+	@include screen-lg {
+		padding-left: $spacing-xl;
+		padding-right: $spacing-xl;
+	}
+	@include screen-xl {
+		padding-left: $spacing-4xl;
+		padding-right: $spacing-4xl;
+	}
+	@include screen-2xl {
+		padding-left: $spacing-8xl;
+		padding-right: $spacing-8xl;
+	}
+	@include screen-2xl {
+		padding-left: $spacing-3xxl;
+		padding-right: $spacing-3xxl;
+	}
+}
+
+@mixin section-max-width {
+	margin: 0 auto;
+	max-width: 1440px;
+}
+
+@mixin center-items {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* components */
+
+@mixin btn-base {
+	line-height: normal;
+	font-weight: 600;
+	letter-spacing: 2px;
+	text-decoration: none;
+	border-radius: $radius-xs;
+	&:hover {
+		filter: brightness(1.1);
+	}
+}
+
+@mixin btn-primary {
+	@include btn-base();
+	min-width: 128px;
+	font-size: var(--fs-sm);
+	padding: $spacing-sm $spacing-md;
+	color: var(--txt-btn);
+	background-color: var(--bg-btn);
+	box-shadow: var(--shadow-xs);
+	@content; // slot for overrides
+}
+
+@mixin btn-secondary {
+	@include btn-base();
+	min-width: 128px;
+	font-size: var(--fs-sm);
+	padding: $spacing-sm $spacing-md;
+	color: var(--txt-btn-secondary);
+	background-color: var(--bg-tertiary);
+	box-shadow: var(--shadow-xs);
+	@content; // slot for overrides
+}
