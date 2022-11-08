@@ -47,27 +47,27 @@
 /* utility mixins */
 
 @mixin section-lr-padding {
-	padding-left: $spacing-md;
 	padding-right: $spacing-md;
+	padding-left: $spacing-md;
 	@include screen-md {
-		padding-left: $spacing-lg;
 		padding-right: $spacing-lg;
+		padding-left: $spacing-lg;
 	}
 	@include screen-lg {
-		padding-left: $spacing-xl;
 		padding-right: $spacing-xl;
+		padding-left: $spacing-xl;
 	}
 	@include screen-xl {
-		padding-left: $spacing-4xl;
 		padding-right: $spacing-4xl;
+		padding-left: $spacing-4xl;
 	}
 	@include screen-2xl {
-		padding-left: $spacing-8xl;
 		padding-right: $spacing-8xl;
+		padding-left: $spacing-8xl;
 	}
 	@include screen-2xl {
-		padding-left: $spacing-3xxl;
 		padding-right: $spacing-3xxl;
+		padding-left: $spacing-3xxl;
 	}
 }
 
@@ -78,18 +78,18 @@
 
 @mixin center-items {
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 }
 
 /* components */
 
 @mixin btn-base {
-	line-height: normal;
+	border-radius: $radius-xs;
 	font-weight: 600;
+	line-height: normal;
 	letter-spacing: 2px;
 	text-decoration: none;
-	border-radius: $radius-xs;
 	&:hover {
 		filter: brightness(1.1);
 	}
@@ -97,22 +97,22 @@
 
 @mixin btn-primary {
 	@include btn-base();
-	min-width: 128px;
-	font-size: var(--fs-sm);
-	padding: $spacing-sm $spacing-md;
-	color: var(--txt-btn);
-	background-color: var(--bg-btn);
 	box-shadow: var(--shadow-xs);
+	background-color: var(--bg-btn);
+	padding: $spacing-sm $spacing-md;
+	min-width: 128px;
+	color: var(--txt-btn);
+	font-size: var(--fs-sm);
 	@content; // slot for overrides
 }
 
 @mixin btn-secondary {
 	@include btn-base();
-	min-width: 128px;
-	font-size: var(--fs-sm);
-	padding: $spacing-sm $spacing-md;
-	color: var(--txt-btn-secondary);
-	background-color: var(--bg-tertiary);
 	box-shadow: var(--shadow-xs);
+	background-color: var(--bg-tertiary);
+	padding: $spacing-sm $spacing-md;
+	min-width: 128px;
+	color: var(--txt-btn-secondary);
+	font-size: var(--fs-sm);
 	@content; // slot for overrides
 }
