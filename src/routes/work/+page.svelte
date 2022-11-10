@@ -2,6 +2,6 @@
 	import Seo from '$components/Seo.svelte';
 </script>
 
-<Seo title="Portfolio | Shindra David" />
+<Seo title="Work | Shindra David" />
 
-<h1>Portfolio</h1>
+<h1>Work</h1>
