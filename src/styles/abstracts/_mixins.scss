@@ -116,3 +116,49 @@
 	font-size: var(--fs-sm);
 	@content; // slot for overrides
 }
+
+@mixin formInput() {
+	@include inputShadow;
+	-webkit-appearance: none;
+	border: 1px solid var(--theme-elevation-150);
+	border-radius: 0;
+	background: var(--theme-input-bg);
+	padding: base(0.5) base(0.75);
+	width: 100%;
+	height: base(2);
+	color: var(--theme-elevation-800);
+	font-size: 1rem;
+	line-height: base(1);
+	font-family: var(--font-body);
+
+	&::-webkit-input-placeholder {
+		color: var(--theme-elevation-400);
+		font-weight: normal;
+		font-size: 1rem;
+	}
+
+	&::-moz-placeholder {
+		color: var(--theme-elevation-400);
+		font-weight: normal;
+		font-size: 1rem;
+	}
+
+	&:hover {
+		border-color: var(--theme-elevation-250);
+	}
+
+	&:focus,
+	&:active {
+		outline: 0;
+		border-color: var(--theme-elevation-400);
+	}
+
+	&:disabled {
+		background: var(--theme-elevation-200);
+		color: var(--theme-elevation-450);
+
+		&:hover {
+			border-color: var(--theme-elevation-150);
+		}
+	}
+}

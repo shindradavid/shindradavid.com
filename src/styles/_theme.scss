@@ -29,6 +29,11 @@
 	--shadow-md: 0 4px 16px #{$shadow-color};
 	--shadow-lg: 0 8px 24px #{$shadow-color};
 	--divider: #{color.adjust($slate-200, $alpha: -0.2)};
+
+	--z-popup: 10;
+	--z-nav: 20;
+	--z-modal: 30;
+	--z-status: 40;
 }
 
 /* width */
@@ -75,4 +80,8 @@ h5,
 h6,
 strong {
 	color: var(--txt-primary);
+}
+
+svg {
+	vertical-align: middle;
 }
