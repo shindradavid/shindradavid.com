@@ -18,6 +18,7 @@ export interface ProjectFrontmatter {
 	description: string;
 	category: 'software' | 'design';
 	technologies: string[];
+	gallery: string[];
 	image: string;
 	link: string;
 	client: string;
