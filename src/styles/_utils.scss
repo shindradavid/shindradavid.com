@@ -76,15 +76,15 @@ $z-layers: (
 
 	@include respond-to('lg-screens') {
 		padding: {
-			right: 180px;
-			left: 180px;
+			right: 120px;
+			left: 120px;
 		}
 	}
 
 	@include respond-to('xl-screens') {
 		padding: {
-			right: 240px;
-			left: 240px;
+			right: 180px;
+			left: 180px;
 		}
 	}
 }

@@ -200,7 +200,7 @@
 		}
 
 		&.open {
-			max-height: 380px;
+			max-height: 480px;
 			opacity: 1;
 		}
 	}
