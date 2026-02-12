@@ -15,15 +15,15 @@
 
 	@include breakpoints.lg {
 		padding: {
-			right: 96px;
-			left: 96px;
+			right: 84px;
+			left: 84px;
 		}
 	}
 
 	@include breakpoints.xl {
 		padding: {
-			right: 108px;
-			left: 108px;
+			right: 96px;
+			left: 96px;
 		}
 	}
 }

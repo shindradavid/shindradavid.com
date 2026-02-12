@@ -141,11 +141,6 @@
 			gap: var(--spacing-md);
 		}
 
-		@include utils.respond-to('lg-screens') {
-			grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-			gap: var(--spacing-md);
-		}
-
 		.no-projects-message {
 			grid-column: 1 / -1;
 			text-align: center;
