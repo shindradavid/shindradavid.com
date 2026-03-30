@@ -26,9 +26,11 @@ export default async () => {
 			});
 		}
 
-		posts = posts.sort((firstItem, secondItem) => {
-			return new Date(secondItem.publishedOn).getTime() - new Date(firstItem.publishedOn).getTime();
-		});
+		posts = posts
+			.filter((post) => post.isPublished)
+			.sort((firstItem, secondItem) => {
+				return new Date(secondItem.publishedOn).getTime() - new Date(firstItem.publishedOn).getTime();
+			});
 
 		return posts;
 	} catch (err) {

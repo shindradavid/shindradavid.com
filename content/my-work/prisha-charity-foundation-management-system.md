@@ -10,6 +10,7 @@ technologies:
   - NestJS
   - PostgreSQL
 client: Prisha Charity Foundation
+isPublished: false
 ---
 
 ## Project overview

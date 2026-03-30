@@ -11,4 +11,5 @@ technologies:
   - PostgreSQL
 client: Personal Project
 liveUrl: https://ngomaster.cloud
+isPublished: false
 ---

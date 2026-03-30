@@ -8,6 +8,7 @@ technologies:
   - React
 client: OHN'S TRANSPORTATION COMPANY
 liveUrl: https://ohnstransportation.com
+isPublished: true
 ---
 
 This project centered on establishing the digital credibility and marketing presence for OHN'S TRANSPORTATION, a new initiative designed to unify and professionalize urban transport in Kampala, Uganda.

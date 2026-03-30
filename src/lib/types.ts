@@ -25,6 +25,7 @@ export interface ProjectFrontmatter {
 	thumbnailUrl: string;
 	liveUrl: string | undefined;
 	publishedOn: string;
+	isPublished: boolean;
 }
 
 export interface Project extends ProjectFrontmatter {

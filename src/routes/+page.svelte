@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	import { PostCard, WorkExperienceCard, MyWorkCard, Seo } from '$lib/components';
+	import { /*PostCard,*/ WorkExperienceCard, MyWorkCard, Seo } from '$lib/components';
 
 	interface Props {
 		data: PageData;
@@ -9,7 +9,7 @@
 
 	let { data }: Props = $props();
 
-	const { posts, projects, workExperience } = data;
+	const { /*posts,*/ projects, workExperience } = data;
 </script>
 
 <Seo
@@ -26,12 +26,12 @@
 			ideas into reality.
 		</p>
 
-		<div class="hero__ctas">
+		<!-- <div class="hero__ctas">
 			<a href="/blog" class="btn btn-primary">Read My Blog</a>
-		</div>
+		</div> -->
 	</section>
 
-	<section class="posts">
+	<!-- <section class="posts">
 		<header class="posts__header">
 			<h2 class="title">Blog</h2>
 			<p class="subtitle">Stay updated with my thoughts on software development and tech.</p>
@@ -44,7 +44,7 @@
 		</div>
 
 		<a href="/blog" class="posts__cta btn btn-primary">View all</a>
-	</section>
+	</section> -->
 
 	<section class="projects">
 		<header class="projects__header">

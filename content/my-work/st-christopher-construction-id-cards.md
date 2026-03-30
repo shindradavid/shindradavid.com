@@ -7,4 +7,5 @@ category: design
 technologies:
   - Figma
 client: St. Christopher Construction And Property Management - SMC LTD
+isPublished: true
 ---

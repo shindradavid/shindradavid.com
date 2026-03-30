@@ -47,7 +47,7 @@
 		<NavLink href="/about-me" name="About me" />
 		<NavLink href="/work-experience" name="Work experience" />
 		<NavLink href="/my-work" name="My work" />
-		<NavLink href="/blog" name="Blog" />
+		<!-- <NavLink href="/blog" name="Blog" /> -->
 	</nav>
 
 	<a href="/lets-connect" class="header__cta btn primary w-fit-content">Let's connect</a>
@@ -71,7 +71,7 @@
 	<NavLink href="/about-me" name="About me" />
 	<NavLink href="/work-experience" name="Work experience" />
 	<NavLink href="/my-work" name="My work" />
-	<NavLink href="/blog" name="Blog" />
+	<!-- <NavLink href="/blog" name="Blog" /> -->
 
 	<a href="/lets-connect" class="mobile-nav__cta btn primary w-fit-content"> Let's connect </a>
 

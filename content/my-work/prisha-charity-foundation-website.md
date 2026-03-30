@@ -8,6 +8,7 @@ technologies:
   - React
 client: Prisha Charity Foundation
 liveUrl: https://prishacharityfoundation.com
+isPublished: false
 ---
 
 ## Project overview

@@ -7,6 +7,7 @@ category: design
 technologies:
   - Figma
 client: Prisha Charity Foundation
+isPublished: false
 ---
 
 ## Project overview

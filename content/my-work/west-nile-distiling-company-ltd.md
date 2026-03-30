@@ -9,6 +9,7 @@ technologies:
   - Sveltekit
 client: West Nile Distilling Company LTD
 liveUrl: https://adriko.iconiksoftware.com
+isPublished: false
 ---
 
 I designed and developed a compelling digital storefront for Westnile Distilling Company Limited (Adrikos), transforming their 40-year history and mission into an engaging online presence.
