@@ -1,7 +1,7 @@
 ---
 title: Secure your NestJS API with Guards.
 description: NestJS guards help control access to routes and secure your application. In this article, we explore their how they work, their use cases, and how you can implement them to enhance security in your API.
-thumbnailUrl: /images/posts/secure-your-nestjs-api-with-guards/thumbnail.png
+thumbnailUrl: /images/posts/secure-your-nestjs-api-with-guards/thumbnail.webp
 publishedOn: 2025-04-06
 tags:
   - nestjs

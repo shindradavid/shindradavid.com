@@ -27,8 +27,8 @@ export const GET: RequestHandler = async () => {
 
 	return new Response(feed.xml({ indent: true }), {
 		headers: {
-			'Content-Type': 'application/xml',
-			'Cache-Control': `public, s-maxage=${60 * 60}, s-maxage=${60 * 60}`
+			'Content-Type': 'application/rss+xml; charset=utf-8',
+			'Cache-Control': `public, max-age=${60 * 60}, s-maxage=${60 * 60}`
 		}
 	});
 };

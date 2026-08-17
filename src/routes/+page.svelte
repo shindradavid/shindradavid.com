@@ -1,78 +1,180 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	import { /*PostCard,*/ WorkExperienceCard, MyWorkCard, Seo } from '$lib/components';
+	import { MyWorkCard, PostCard, Seo } from '$lib/components';
+	import ServiceCard from '$lib/components/ServiceCard.svelte';
+	import { getWhatsAppUrl, services, site } from '$lib/site';
 
-	interface Props {
-		data: PageData;
-	}
-
-	let { data }: Props = $props();
-
-	const { /*posts,*/ projects, workExperience } = data;
+	let { data }: { data: PageData } = $props();
+	const { featuredProjects, posts } = data;
+	const testimonials = featuredProjects.flatMap((project) =>
+		project.testimonial ? [project.testimonial] : []
+	);
+	const projectMessage =
+		'Hi Shindra, I found your portfolio and would like to discuss a website or business system for my business.';
 </script>
 
-<Seo
-	title="Shindra David – Full-Stack Developer & Graphic Designer in Uganda"
-	description="I’m Shindra David, a self-taught full-stack developer and graphic designer passionate about building modern web and mobile applications using Svelte, Node.js, and React. Explore my projects and journey in tech."
-/>
+<Seo title={site.title} description={site.description} />
 
 <main>
-	<section class="hero">
-		<h1 class="hero__heading">Hi, I’m Shindra David</h1>
-		<p class="hero__subheading">
-			Am a full-stack developer passionate about crafting modern, scalable web and mobile
-			applications. From backend logic to frontend experiences, I love solving problems and turning
-			ideas into reality.
-		</p>
-
-		<!-- <div class="hero__ctas">
-			<a href="/blog" class="btn btn-primary">Read My Blog</a>
-		</div> -->
-	</section>
-
-	<!-- <section class="posts">
-		<header class="posts__header">
-			<h2 class="title">Blog</h2>
-			<p class="subtitle">Stay updated with my thoughts on software development and tech.</p>
-		</header>
-
-		<div class="posts__container">
-			{#each posts.slice(0, 3) as post}
-				<PostCard {post} />
-			{/each}
+	<section class="hero container">
+		<div class="hero__content">
+			<span class="eyebrow">Full-stack developer in Uganda</span>
+			<h1>Websites and business systems that help Ugandan SMEs grow.</h1>
+			<p>
+				I design and build fast business websites, online stores and custom operations software—from
+				idea to launch and ongoing support.
+			</p>
+			<div class="hero__actions">
+				<a
+					href={getWhatsAppUrl(projectMessage)}
+					class="btn primary hero__primary"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="ri-whatsapp-line" aria-hidden="true"></i>
+					Start a project
+				</a>
+				<a href="#featured-work" class="btn secondary hero__secondary">See client work</a>
+			</div>
+			<p class="hero__note">
+				<span aria-hidden="true">●</span> Available for selected website and software projects
+			</p>
 		</div>
 
-		<a href="/blog" class="posts__cta btn btn-primary">View all</a>
-	</section> -->
+		<div class="hero__portrait" aria-hidden="true">
+			<div class="hero__glow"></div>
+			<img src="/images/logo.webp" alt="" width="720" height="720" fetchpriority="high" />
+		</div>
+	</section>
 
-	<section class="projects">
-		<header class="projects__header">
-			<h2 class="title">My work</h2>
-			<p class="subtitle">Stay updated with my work.</p>
+	<section class="section container" id="featured-work">
+		<header class="section-header">
+			<span class="eyebrow">Selected work</span>
+			<h2>Solutions built around real businesses</h2>
+			<p>
+				A selection of websites and systems designed to make customer experiences clearer and
+				operations easier to manage.
+			</p>
 		</header>
 
-		<div class="projects__container">
-			{#each projects.slice(0, 3) as project}
+		<div class="project-grid">
+			{#each featuredProjects as project (project.slug)}
 				<MyWorkCard {project} />
 			{/each}
 		</div>
-
-		<a href="/my-work" class="projects__cta btn btn-primary">View all</a>
+		<a href="/my-work" class="text-link">View all client work <span aria-hidden="true">→</span></a>
 	</section>
 
-	<section class="work-experience-section">
-		<h2>Work Experience</h2>
-		<p class="intro-paragraph">
-			My journey in software development and design has been shaped by diverse roles, from
-			freelancing to leading IT initiatives at Maurice Group.
-		</p>
+	<section class="section services">
+		<div class="container">
+			<header class="section-header">
+				<span class="eyebrow">Services</span>
+				<h2>Practical digital tools for your next stage of growth</h2>
+				<p>
+					Every engagement is scoped around the business problem—not a one-size-fits-all template.
+				</p>
+			</header>
 
-		<div class="experience-list">
-			{#each workExperience as experience (experience.order)}
-				<WorkExperienceCard {experience} />
+			<div class="service-grid">
+				{#each services as service, index (service.slug)}
+					<ServiceCard {service} {index} />
+				{/each}
+			</div>
+			<a href="/services" class="text-link"
+				>Compare services and pricing <span aria-hidden="true">→</span></a
+			>
+		</div>
+	</section>
+
+	<section class="section container process">
+		<header class="section-header">
+			<span class="eyebrow">How we work</span>
+			<h2>A clear path from idea to launch</h2>
+		</header>
+		<ol>
+			<li>
+				<span>01</span>
+				<div>
+					<h3>Discover</h3>
+					<p>We clarify your goals, users, workflows and definition of success.</p>
+				</div>
+			</li>
+			<li>
+				<span>02</span>
+				<div>
+					<h3>Plan</h3>
+					<p>You receive a focused scope, timeline and investment before development begins.</p>
+				</div>
+			</li>
+			<li>
+				<span>03</span>
+				<div>
+					<h3>Build</h3>
+					<p>I design and develop in clear milestones, with regular opportunities for feedback.</p>
+				</div>
+			</li>
+			<li>
+				<span>04</span>
+				<div>
+					<h3>Launch</h3>
+					<p>We test, deploy, train your team and agree on the support you need next.</p>
+				</div>
+			</li>
+		</ol>
+	</section>
+
+	{#if testimonials.length > 0}
+		<section class="section testimonials">
+			<div class="container">
+				<header class="section-header">
+					<span class="eyebrow">Client feedback</span>
+					<h2>What it is like to work together</h2>
+				</header>
+				<div class="testimonial-grid">
+					{#each testimonials as testimonial}
+						<figure>
+							<blockquote>“{testimonial.quote}”</blockquote>
+							<figcaption>
+								{testimonial.name}, {testimonial.role
+									? `${testimonial.role}, `
+									: ''}{testimonial.company}
+							</figcaption>
+						</figure>
+					{/each}
+				</div>
+			</div>
+		</section>
+	{/if}
+
+	<section class="section container insights">
+		<header class="section-header insights__header">
+			<div>
+				<span class="eyebrow">From the blog</span>
+				<h2>Useful notes from building and learning</h2>
+			</div>
+			<a href="/blog" class="text-link">Read all articles <span aria-hidden="true">→</span></a>
+		</header>
+		<div class="post-grid">
+			{#each posts as post (post.slug)}
+				<PostCard {post} />
 			{/each}
 		</div>
+	</section>
+
+	<section class="cta-section container">
+		<div>
+			<span class="eyebrow">Have a project in mind?</span>
+			<h2>Let’s turn it into a useful, dependable product.</h2>
+			<p>Tell me what your business needs. I’ll reply with the best next step.</p>
+		</div>
+		<a
+			href={getWhatsAppUrl(projectMessage)}
+			class="btn primary"
+			target="_blank"
+			rel="noopener noreferrer"
+			>Chat on WhatsApp <i class="ri-arrow-right-up-line" aria-hidden="true"></i></a
+		>
 	</section>
 </main>
 
@@ -80,117 +182,176 @@
 	@use '../styles/utils';
 
 	.hero {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		display: grid;
 		align-items: center;
-		padding: var(--spacing-lg) 0;
+		gap: var(--spacing-3xl);
+		min-height: calc(100svh - 96px);
+		padding-block: clamp(48px, 8vw, 96px);
 
 		@include utils.respond-to('md-screens') {
-			width: 40vw;
-			margin: 0 auto;
+			grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
 		}
 
-		&__subheading {
-			text-align: center;
-		}
-	}
-
-	.posts {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-		&__header {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			margin-top: var(--spacing-sm);
-			margin-bottom: var(--spacing-xl);
-
-			p {
-				text-align: center;
-			}
-
-			@include utils.respond-to('md-screens') {
-				max-width: 40vw;
-			}
-		}
-		&__container {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-			justify-items: center;
-			gap: var(--spacing-lg);
+		&__content {
+			max-width: 760px;
 		}
 
-		&__cta {
-			margin-top: var(--spacing-md);
+		h1 {
+			font-size: clamp(4rem, 7vw, 7.6rem);
+			line-height: 1.03;
+			letter-spacing: -0.04em;
+			color: var(--clr-txt-primary-on-bg-primary);
 			margin-bottom: var(--spacing-lg);
 		}
-	}
 
-	.projects {
-		&__header {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			justify-self: center;
-			align-self: center;
-			margin-top: var(--spacing-sm);
-			margin-bottom: var(--spacing-xl);
-
-			p {
-				text-align: center;
-			}
-
-			@include utils.respond-to('md-screens') {
-				max-width: 40vw;
-			}
+		&__content > p:not(.hero__note) {
+			font-size: clamp(var(--fs-md), 2vw, var(--fs-lg));
+			max-width: 660px;
 		}
 
-		&__container {
-			display: grid;
-			gap: var(--spacing-lg);
-			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		&__actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: var(--spacing-sm);
+			margin-top: var(--spacing-xl);
 		}
 
-		&__cta {
-			display: flex;
-			justify-self: center;
-			align-self: center;
+		&__primary,
+		&__secondary {
+			width: auto !important;
+			padding: 14px 20px;
+		}
+
+		&__note {
+			font-size: var(--fs-sm);
 			margin-top: var(--spacing-md);
-			margin-bottom: var(--spacing-lg);
+
+			span {
+				color: var(--clr-ok);
+			}
+		}
+
+		&__portrait {
+			position: relative;
+			width: min(100%, 440px);
+			justify-self: center;
+
+			img {
+				position: relative;
+				z-index: 1;
+				width: 100%;
+				height: auto;
+				border-radius: 50%;
+			}
+		}
+
+		&__glow {
+			position: absolute;
+			inset: 12%;
+			background: var(--clr-accent-1);
+			filter: blur(70px);
+			opacity: 0.28;
 		}
 	}
 
-	.work-experience-section {
-		padding-top: var(--spacing-9xl);
-		padding-bottom: var(--spacing-9xl);
-		background-color: var(--clr-bg-primary);
+	.project-grid,
+	.post-grid,
+	.service-grid,
+	.testimonial-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+		gap: var(--spacing-lg);
+	}
+
+	.text-link {
+		display: inline-block;
 		color: var(--clr-txt-primary-on-bg-primary);
+		font-weight: var(--fw-bold);
+		margin-top: var(--spacing-xl);
+		text-underline-offset: 5px;
+	}
+
+	.services,
+	.testimonials {
+		background: var(--clr-bg-secondary);
+	}
+
+	.process ol {
+		display: grid;
+		gap: var(--spacing-md);
+		grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+	}
+
+	.process li {
+		list-style: none;
+		margin: 0;
+		padding: var(--spacing-lg);
+		border-top: 2px solid var(--clr-accent-1);
+		background: var(--clr-bg-secondary);
+
+		> span {
+			display: block;
+			color: var(--clr-accent-1);
+			font-weight: var(--fw-bold);
+			margin-bottom: var(--spacing-xl);
+		}
+
+		h3 {
+			color: var(--clr-txt-primary-on-bg-secondary);
+			margin-bottom: var(--spacing-xs);
+		}
+	}
+
+	.testimonials figure {
+		padding: var(--spacing-xl);
+		background: var(--clr-bg-primary);
+		border-radius: var(--radius-sm);
+	}
+
+	.testimonials blockquote {
+		font-size: var(--fs-md);
+		color: var(--clr-txt-primary-on-bg-primary);
+		margin-bottom: var(--spacing-lg);
+	}
+
+	.insights__header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: end;
+		justify-content: space-between;
+		gap: var(--spacing-lg);
+		max-width: none;
+
+		.text-link {
+			margin-top: 0;
+		}
+	}
+
+	.cta-section {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-xl);
+		padding: clamp(32px, 6vw, 72px);
+		margin-bottom: clamp(64px, 9vw, 112px);
+		background: var(--clr-bg-secondary);
+		border: 1px solid var(--clr-divider-primary-on-bg-secondary);
+		border-radius: var(--radius-base);
+
+		> div {
+			max-width: 700px;
+		}
 
 		h2 {
-			text-align: center;
-			font-size: var(--fs-2xl);
-			margin-bottom: var(--spacing-md);
-			color: var(--clr-txt-primary-on-bg-primary);
+			font-size: clamp(var(--fs-xl), 4vw, var(--fs-2xl));
+			line-height: 1.15;
+			color: var(--clr-txt-primary-on-bg-secondary);
+			margin-bottom: var(--spacing-sm);
 		}
 
-		.intro-paragraph {
-			text-align: center;
-			font-size: var(--fs-md);
-			max-width: 700px;
-			margin: 0 auto var(--spacing-6xl) auto;
-			color: var(--clr-txt-secondary-on-bg-primary);
+		.btn {
+			padding: 14px 20px;
 		}
-	}
-
-	.experience-list {
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-3xl);
-		max-width: 900px;
-		margin: 0 auto;
 	}
 </style>

@@ -1,46 +1,88 @@
 <script lang="ts">
 	import { page } from '$app/state';
-
-	let siteUrl = 'https://www.shindradavid.com';
-	let siteName = 'Shindra David';
+	import { site } from '$lib/site';
 
 	interface Props {
 		title: string;
 		description?: string;
 		ogImage?: string;
 		ogImageAlt?: string;
+		type?: 'website' | 'article';
+		publishedOn?: string;
+		structuredData?: Record<string, unknown> | Record<string, unknown>[];
 	}
 
 	let {
 		title,
 		description = '',
-		ogImage = '/images/default-og-image.png',
-		ogImageAlt = 'Shindra David'
+		ogImage = '/images/logo.webp',
+		ogImageAlt = 'Shindra David',
+		type = 'website',
+		publishedOn,
+		structuredData
 	}: Props = $props();
+
+	const canonicalUrl = $derived(new URL(page.url.pathname, site.url).toString());
+	const imageUrl = $derived(new URL(ogImage, site.url).toString());
+	const defaultStructuredData = $derived(
+		type === 'article'
+			? {
+					'@context': 'https://schema.org',
+					'@type': 'Article',
+					headline: title,
+					description,
+					image: imageUrl,
+					datePublished: publishedOn,
+					mainEntityOfPage: canonicalUrl,
+					author: { '@type': 'Person', name: site.name, url: site.url }
+				}
+			: {
+					'@context': 'https://schema.org',
+					'@type': 'Person',
+					name: site.name,
+					url: site.url,
+					image: new URL('/images/logo.webp', site.url).toString(),
+					jobTitle: 'Full-stack developer',
+					address: { '@type': 'PostalAddress', addressCountry: 'UG' },
+					sameAs: [
+						'https://github.com/shindradavid',
+						'https://linkedin.com/in/shindradavid',
+						'https://x.com/shindradavid'
+					]
+				}
+	);
+	const structuredDataMarkup = $derived(
+		`<script type="application/ld+json">${JSON.stringify(structuredData ?? defaultStructuredData).replace(/</g, '\\u003c')}</scr${'ipt'}>`
+	);
 </script>
 
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
-	<meta name="image" content={new URL(ogImage, siteUrl).toString()} />
-	<link rel="canonical" href={new URL(page.url.pathname, siteUrl).toString()} />
+	<meta name="author" content={site.name} />
+	<meta name="image" content={imageUrl} />
+	<link rel="canonical" href={canonicalUrl} />
 	<!-- twitter card -->
-	<meta property="twitter:url" content={new URL(page.url.pathname, siteUrl).toString()} />
+	<meta property="twitter:url" content={canonicalUrl} />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@twitter" />
-	<meta name="twitter:creator" content="@twitter" />
+	<meta name="twitter:site" content={site.twitterHandle} />
+	<meta name="twitter:creator" content={site.twitterHandle} />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
-	<meta name="twitter:image" content={new URL(ogImage, siteUrl).toString()} />
+	<meta name="twitter:image" content={imageUrl} />
 	<meta name="twitter:image:alt" content={ogImageAlt} />
 	<!-- open graph tags -->
-	<meta property="og:url" content={new URL(page.url.pathname, siteUrl).toString()} />
-	<meta name="og:locale" content="en" />
-	<meta name="og:type" content="website" />
-	<meta name="og:site_name" content={siteName} />
-	<meta name="og:title" content={title} />
-	<meta name="og:description" content={description} />
-	<meta name="og:image:url" content={new URL(ogImage, siteUrl).toString()} />
-	<meta name="og:image:alt" content={ogImageAlt} />
-	<!-- schema.org -->
+	<meta property="og:url" content={canonicalUrl} />
+	<meta property="og:locale" content="en_UG" />
+	<meta property="og:type" content={type} />
+	<meta property="og:site_name" content={site.name} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:image" content={imageUrl} />
+	<meta property="og:image:alt" content={ogImageAlt} />
+	{#if type === 'article' && publishedOn}
+		<meta property="article:published_time" content={publishedOn} />
+	{/if}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html structuredDataMarkup}
 </svelte:head>

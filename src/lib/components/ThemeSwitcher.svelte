@@ -6,7 +6,9 @@
 
 <div class="theme-switcher">
 	<button
+		type="button"
 		aria-label="Switch to system theme"
+		aria-pressed={themeState.theme === 'system'}
 		class="switch-option {themeState.theme === 'system' ? 'active' : ''}"
 		onclick={() => (themeState.theme = 'system')}
 	>
@@ -14,7 +16,9 @@
 	</button>
 
 	<button
+		type="button"
 		aria-label="Switch to light theme"
+		aria-pressed={themeState.theme === 'light'}
 		class="switch-option {themeState.theme === 'light' ? 'active' : ''}"
 		onclick={() => (themeState.theme = 'light')}
 	>
@@ -22,7 +26,9 @@
 	</button>
 
 	<button
+		type="button"
 		aria-label="Switch to dark theme"
+		aria-pressed={themeState.theme === 'dark'}
 		class="switch-option {themeState.theme === 'dark' ? 'active' : ''}"
 		onclick={() => (themeState.theme = 'dark')}
 	>

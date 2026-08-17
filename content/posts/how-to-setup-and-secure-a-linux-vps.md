@@ -1,7 +1,7 @@
 ---
 title: How to setup and secure a linux VPS
 description: This guide covers everything you need to know about setting up a Linux VPS, including SSH setup, security best practices, firewall configuration, and performance optimization.
-thumbnailUrl: /images/posts/how-to-setup-and-secure-a-linux-vps/thumbnail.png
+thumbnailUrl: /images/posts/how-to-setup-and-secure-a-linux-vps/thumbnail.webp
 publishedOn: 2025-03-23
 tags:
   - linux

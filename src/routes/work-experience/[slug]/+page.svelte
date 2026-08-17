@@ -43,6 +43,7 @@
 	</section>
 
 	<section class="content">
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted repository Markdown -->
 		{@html html}
 	</section>
 
@@ -52,7 +53,12 @@
 			<div class="image-gallery">
 				{#each frontmatter.images as image (image.src)}
 					<figure class="gallery-item">
-						<img src={image.src} alt={image.caption || 'Project screenshot'} />
+						<img
+							src={image.src}
+							alt={image.caption || 'Work example'}
+							loading="lazy"
+							decoding="async"
+						/>
 						{#if image.caption}
 							<figcaption>{image.caption}</figcaption>
 						{/if}
@@ -83,10 +89,6 @@
 			@include utils.respond-to('md-screens') {
 				width: 40vw;
 			}
-		}
-
-		.thumbnail {
-			height: 100%;
 		}
 
 		.overview {
@@ -146,29 +148,6 @@
 						padding: var(--spacing-xs) var(--spacing-sm); // Padding
 						border-radius: var(--radius-xxs); // Rounded corners
 						white-space: nowrap; // Prevent wrapping within a tag
-					}
-				}
-			}
-
-			.overview-actions {
-				display: flex;
-				flex-direction: column; // Stack buttons on mobile
-				gap: var(--spacing-md); // Space between buttons
-				margin-top: var(--spacing-lg); // Space above buttons
-
-				@include utils.respond-to('md-screens') {
-					flex-direction: row; // Row layout on desktop
-					justify-content: center; // Center buttons horizontally
-				}
-
-				.btn {
-					display: inline-flex; // Ensure button content is aligned
-					align-items: center; // Align text and icon vertically
-					justify-content: center; // Center content horizontally
-					gap: var(--spacing-sm); // Space between text and icon
-					width: 100%; // Full width on mobile
-					@include utils.respond-to('md-screens') {
-						width: auto; // Auto width on desktop
 					}
 				}
 			}

@@ -1,13 +1,8 @@
 <script lang="ts">
 	import { Seo } from '$lib/components';
+	import { getWhatsAppUrl } from '$lib/site';
 
 	const socialLinks = [
-		{
-			icon: 'ri-whatsapp-fill',
-			label: 'WhatsApp',
-			value: '+256 782 346 200',
-			url: 'https://wa.me/256782346200'
-		},
 		{
 			icon: 'ri-linkedin-box-fill',
 			label: 'LinkedIn',
@@ -43,12 +38,29 @@
 <main>
 	<section class="connect-page">
 		<div class="contact-card">
-			<h1>Let's Connect</h1>
-			<p>I'd love to hear from you.</p>
+			<span class="eyebrow">Let’s work together</span>
+			<h1>Tell me what your business needs next.</h1>
+			<p>
+				Share your goal, current challenge and ideal timeline. I’ll reply with useful questions and
+				the best next step.
+			</p>
+
+			<a
+				class="whatsapp-cta btn primary"
+				href={getWhatsAppUrl(
+					'Hi Shindra, I found your portfolio and would like to discuss a project for my business.'
+				)}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<i class="ri-whatsapp-line" aria-hidden="true"></i> Start on WhatsApp
+			</a>
+
+			<h2>Or find me elsewhere</h2>
 
 			<div class="social-grid">
 				{#each socialLinks as { icon, label, value, url }}
-					<a class="social-card" href={url} target="_blank" rel="noopener">
+					<a class="social-card" href={url} target="_blank" rel="noopener noreferrer">
 						<i class={icon}></i>
 						<div class="text">
 							<span class="label">{label}</span>
@@ -81,6 +93,17 @@
 			width: 100%;
 			max-width: 768px;
 			text-align: center;
+
+			.whatsapp-cta {
+				padding: 14px 20px;
+				margin-bottom: var(--spacing-2xl);
+			}
+
+			h2 {
+				font-size: var(--fs-md);
+				margin-bottom: var(--spacing-md);
+				color: var(--clr-txt-primary-on-bg-secondary);
+			}
 
 			h1 {
 				margin-bottom: var(--spacing-lg);

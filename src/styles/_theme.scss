@@ -115,6 +115,7 @@
 
 	// bg primary - Softened white with a very subtle cool hue
 	--clr-bg-primary: hsl(210, 10%, 98%);
+	--clr-bg-primary-alpha: hsla(210, 10%, 98%, 0.88);
 	--clr-txt-primary-on-bg-primary: hsl(210, 8%, 10%); // Darker, but less stark black
 	--clr-txt-secondary-on-bg-primary: hsl(210, 8%, 25%); // Darker, softer gray
 	--clr-txt-tertiary-on-bg-primary: hsl(210, 8%, 45%); // Darker, softer gray

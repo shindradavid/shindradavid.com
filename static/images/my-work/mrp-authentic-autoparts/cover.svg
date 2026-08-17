@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 576" role="img" aria-labelledby="title desc">
+  <title id="title">Mr. P Authentic Autoparts digital platform</title>
+  <desc id="desc">Branded cover representing the marketing website and inventory system.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#08121f"/>
+      <stop offset="1" stop-color="#173352"/>
+    </linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1024" height="576" fill="url(#background)"/>
+  <path d="M0 510L1024 190V576H0Z" fill="#f7941d" opacity=".1"/>
+  <g fill="#fff">
+    <text x="72" y="112" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#f7941d">WEBSITE + INVENTORY</text>
+    <text x="72" y="190" font-family="Arial, sans-serif" font-size="54" font-weight="800">Mr. P Authentic</text>
+    <text x="72" y="252" font-family="Arial, sans-serif" font-size="54" font-weight="800">Autoparts</text>
+    <text x="72" y="306" font-family="Arial, sans-serif" font-size="23" opacity=".74">Premium presentation. Practical stock control.</text>
+  </g>
+  <g transform="translate(632 128)" filter="url(#shadow)">
+    <rect width="318" height="320" rx="26" fill="#f8fafc"/>
+    <rect x="24" y="24" width="90" height="14" rx="7" fill="#132b46"/>
+    <rect x="24" y="64" width="270" height="96" rx="16" fill="#dce5ed"/>
+    <circle cx="78" cy="112" r="28" fill="#f7941d"/>
+    <rect x="124" y="91" width="130" height="14" rx="7" fill="#53677b"/>
+    <rect x="124" y="119" width="88" height="11" rx="6" fill="#9aa8b5"/>
+    <rect x="24" y="188" width="126" height="104" rx="14" fill="#e8edf2"/>
+    <rect x="168" y="188" width="126" height="104" rx="14" fill="#132b46"/>
+    <rect x="190" y="214" width="82" height="12" rx="6" fill="#f7941d"/>
+    <rect x="190" y="242" width="58" height="10" rx="5" fill="#fff" opacity=".7"/>
+  </g>
+</svg>

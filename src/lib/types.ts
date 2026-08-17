@@ -12,18 +12,38 @@ export interface Post extends Frontmatter {
 
 export type Theme = 'dark' | 'light' | 'system';
 
+export type ServiceType =
+	| 'business-website'
+	| 'ecommerce'
+	| 'business-system'
+	| 'mobile-app'
+	| 'design';
+
+export interface Testimonial {
+	quote: string;
+	name: string;
+	role?: string;
+	company: string;
+}
+
 export interface ProjectFrontmatter {
-	id: number;
 	title: string;
 	description: string;
 	category: 'software' | 'design';
 	technologies: string[];
-	gallery: string[];
-	image: string;
-	link: string;
 	client: string;
 	thumbnailUrl: string;
-	liveUrl: string | undefined;
+	liveUrl?: string;
+	playStoreUrl?: string;
+	appStoreUrl?: string;
+	githubUrl?: string;
+	role?: string;
+	duration?: string;
+	serviceTypes?: ServiceType[];
+	featuredRank?: number;
+	outcomes?: string[];
+	testimonial?: Testimonial;
+	gallery?: Array<{ src: string; caption?: string }>;
 	publishedOn: string;
 	isPublished: boolean;
 }
@@ -41,7 +61,7 @@ export interface ExperienceFrontmatter {
 	description: string;
 	technologies: string[];
 	link: string;
-	images: {
+	images?: {
 		src: string;
 		caption: string;
 	}[];
@@ -49,4 +69,13 @@ export interface ExperienceFrontmatter {
 
 export interface WorkExperience extends ExperienceFrontmatter {
 	slug: string;
+}
+
+export interface Service {
+	slug: ServiceType;
+	title: string;
+	description: string;
+	idealFor: string;
+	deliverables: string[];
+	startingPriceUGX?: number;
 }

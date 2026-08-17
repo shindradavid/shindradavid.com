@@ -5,6 +5,7 @@ import fs from 'fs-extra';
 import grayMatter from 'gray-matter';
 
 import type { ExperienceFrontmatter, WorkExperience } from '$lib/types';
+import { validateExperienceFrontmatter } from './validateFrontmatter';
 
 export default async () => {
 	try {
@@ -19,6 +20,7 @@ export default async () => {
 			const file = await fs.readFile(`${postDirPath}/${markdownFile}`, 'utf-8');
 
 			const { data } = grayMatter(file);
+			validateExperienceFrontmatter(data, markdownFile);
 
 			workExperience.push({
 				slug: markdownFile.slice(0, -3),
@@ -34,6 +36,8 @@ export default async () => {
 
 		return workExperience;
 	} catch (err) {
-		throw Error('Failed to get work experience');
+		throw new Error(
+			`Failed to get work experience: ${err instanceof Error ? err.message : String(err)}`
+		);
 	}
 };

@@ -1,16 +1,29 @@
 <script lang="ts">
 	import type { Post } from '$lib/types';
 
-	export let post: Post;
+	let { post }: { post: Post } = $props();
 </script>
 
 <a href="/blog/{post.slug}">
 	<article class="post">
 		<div class="aspect-ratio-16x9">
-			<img class="post__thumbnail" src={post.thumbnailUrl} alt={post.title} />
+			<img
+				class="post__thumbnail"
+				src={post.thumbnailUrl}
+				alt="Illustration for {post.title}"
+				width="1024"
+				height="576"
+				loading="lazy"
+				decoding="async"
+			/>
 		</div>
 
 		<div class="details">
+			<time datetime={post.publishedOn}>
+				{new Intl.DateTimeFormat('en-UG', { dateStyle: 'medium' }).format(
+					new Date(post.publishedOn)
+				)}
+			</time>
 			<ul class="post__tags">
 				{#each post.tags as tag}
 					<li class="tag tag-{tag}">{tag}</li>
@@ -43,6 +56,11 @@
 
 			.details {
 				padding: var(--spacing-lg);
+
+				time {
+					font-size: var(--fs-sm);
+					color: var(--clr-txt-tertiary-on-bg-secondary);
+				}
 			}
 
 			&__thumbnail {

@@ -43,14 +43,14 @@ $z-layers: (
 
 @function map-deep-get($map, $keys...) {
 	@each $key in $keys {
-		$map: map-get($map, $key);
+		$map: map.get($map, $key);
 	}
 
 	@return $map;
 }
 
 @function z($layer, $sub-layer: null) {
-	@if not map-has-key($z-layers, $layer) {
+	@if not map.has-key($z-layers, $layer) {
 		@warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
 	}
 

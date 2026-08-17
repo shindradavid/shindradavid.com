@@ -8,7 +8,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import grayMatter from 'gray-matter';
 
-import { rehypeToc, rehypeCopyCode } from '$lib/server/markdown/plugins';
+import { rehypeCopyCode } from '$lib/server/markdown/plugins';
 
 function searchAndReplace(markdown: string): string {
 	const pattern = /{%\s*icon\s*"([^"]+)"\s*file\s*"([^"]+)"\s*%}/g;
@@ -44,11 +44,11 @@ export default async <F>(markdown: string) => {
 		.use(rehypeShiki, {
 			theme: 'github-dark-dimmed'
 		})
-		.use(rehypeStringify, { allowDangerousHtml: true })
 		.use(rehypeSlug)
 		.use(rehypeAutolinkHeadings, { behavior: 'append' })
-		// .use(rehypeToc)
 		.use(rehypeCopyCode)
+		// @ts-expect-error unified plugins currently resolve through incompatible nested vfile types
+		.use(rehypeStringify, { allowDangerousHtml: true })
 		.process(searchAndReplace(content));
 
 	const html = file.toString();

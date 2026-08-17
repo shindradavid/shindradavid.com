@@ -14,6 +14,7 @@
 		CloudComputing,
 		Redis
 	} from '$lib/icons';
+	import { getWhatsAppUrl } from '$lib/site';
 
 	const skills = [
 		{
@@ -107,10 +108,10 @@
 	<section class="my-journey">
 		<h2>My Journey into Coding</h2>
 		<p>
-			I do not have technical background, my journey into programming began unexpectedly. I was in
-			business school, taking a digital marketing class, when our lecturer introduced the concept of
-			websites as powerful marketing tools. That single lesson sparked my curiosity. How were
-			websites built? What made them so effective? I wanted to understand more.
+			I did not begin with a technical background. My journey into programming started unexpectedly
+			while I was in business school, taking a digital marketing class, when our lecturer introduced
+			the concept of websites as powerful marketing tools. That single lesson sparked my curiosity.
+			How were websites built? What made them so effective? I wanted to understand more.
 		</p>
 
 		<p>
@@ -148,7 +149,7 @@
 
 	<section class="skills">
 		<header class="skills__header">
-			<h1>Skills</h1>
+			<h2>Skills</h2>
 			<p>Here is a peek under the hood of my tech toolbox.</p>
 		</header>
 
@@ -176,6 +177,14 @@
 				</article>
 			{/each}
 		</div>
+	</section>
+
+	<section class="about-cta">
+		<h2>Need a practical digital solution for your business?</h2>
+		<p>Tell me what you are trying to improve and I’ll help identify the right next step.</p>
+		<a href={getWhatsAppUrl()} class="btn primary" target="_blank" rel="noopener noreferrer"
+			>Start a conversation</a
+		>
 	</section>
 </main>
 
@@ -287,6 +296,20 @@
 						}
 					}
 				}
+			}
+		}
+
+		.about-cta {
+			max-width: 760px;
+			margin: var(--spacing-7xl) auto;
+			padding: var(--spacing-xl);
+			text-align: center;
+			background: var(--clr-bg-secondary);
+			border-radius: var(--radius-sm);
+
+			h2 {
+				color: var(--clr-txt-primary-on-bg-secondary);
+				margin-bottom: var(--spacing-sm);
 			}
 		}
 	}

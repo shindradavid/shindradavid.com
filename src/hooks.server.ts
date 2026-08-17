@@ -8,24 +8,24 @@ export const handle = (async ({ resolve, event }) => {
 	const { cookies, locals } = event;
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const theme = (cookies.get('theme') ?? defaultTheme) as Theme;
-
-	if (!theme) {
-		locals.theme = defaultTheme;
-
-		cookies.set('theme', locals.theme, {
-			maxAge: cookieExpirationTime,
-			path: '/',
-			httpOnly: false
-		});
-	} else {
-		locals.theme = theme;
-	}
+	const cookieTheme = cookies.get('theme');
+	const theme: Theme = ['dark', 'light', 'system'].includes(cookieTheme ?? '')
+		? (cookieTheme as Theme)
+		: defaultTheme;
 
 	locals.theme = theme;
 
+	if (cookieTheme !== theme) {
+		cookies.set('theme', theme, {
+			maxAge: cookieExpirationTime,
+			path: '/',
+			httpOnly: false,
+			sameSite: 'lax'
+		});
+	}
+
 	const response = await resolve(event, {
-		transformPageChunk: ({ html }) => html.replace('<body', `<body data-theme=${locals.theme}`)
+		transformPageChunk: ({ html }) => html.replace('<body', `<body data-theme="${theme}"`)
 	});
 	return response;
 }) satisfies Handle;

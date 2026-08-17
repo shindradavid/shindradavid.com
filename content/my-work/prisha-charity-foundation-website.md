@@ -19,29 +19,31 @@ The public-facing website for the Prisha Foundation serves as the primary digita
 
 As the frontend developer for the Prisha Foundation's public website, my responsibilities were centered on user experience, visual design implementation, and robust integration with the backend CSOMS. Key areas included:
 
- - **UI/UX Implementation**: Translating design mockups and wireframes into a fully functional and responsive web interface using React, ensuring an intuitive and engaging user journey.
+- **UI/UX Implementation**: Translating design mockups and wireframes into a fully functional and responsive web interface using React, ensuring an intuitive and engaging user journey.
 
- - **Frontend Development**: Building reusable React components, managing application state, and implementing interactive elements to enhance user interaction.
+- **Frontend Development**: Building reusable React components, managing application state, and implementing interactive elements to enhance user interaction.
 
- - **API Integration**: Consuming RESTful APIs developed for the internal CSOMS to dynamically display child profiles, process sponsorship requests, and manage sponsor portal data.
+- **API Integration**: Consuming RESTful APIs developed for the internal CSOMS to dynamically display child profiles, process sponsorship requests, and manage sponsor portal data.
 
- - **Responsive Design**: Ensuring the website provides an optimal viewing and interaction experience across a wide range of devices, from mobile phones to large desktop screens, using modern CSS techniques.
+- **Responsive Design**: Ensuring the website provides an optimal viewing and interaction experience across a wide range of devices, from mobile phones to large desktop screens, using modern CSS techniques.
 
- - **Performance Optimization**: Optimizing website loading times and rendering performance for a smooth user experience.
+- **Performance Optimization**: Optimizing website loading times and rendering performance for a smooth user experience.
 
- - **Cross-Browser Compatibility**: Ensuring consistent functionality and appearance across different web browsers.
+- **Cross-Browser Compatibility**: Ensuring consistent functionality and appearance across different web browsers.
 
 ## Key Features Implemented
 
 1. **Child Sponsorship Showcase**
-    1. **Dynamic Profiles**: Displays a curated list of children available for sponsorship, each with a detailed profile including images, age, gender, and a brief story, fetched dynamically from the CSOMS.
+
+   1. **Dynamic Profiles**: Displays a curated list of children available for sponsorship, each with a detailed profile including images, age, gender, and a brief story, fetched dynamically from the CSOMS.
 
 2. **Sponsor Portal**
-    1. **Secure Login**: A dedicated and secure login area for existing sponsors to access their personalized dashboard.
-    2. **Child Updates**: Provides access to updates, stories, and progress reports about their sponsored child, fostering a direct connection and demonstrating impact.
-    3. **Donation History**: Allows sponsors to view a comprehensive record of their past donations and financial contributions.
-    4. **Automated Communication**: Displays automated thank-you messages and important announcements from the foundation.
+
+   1. **Secure Login**: A dedicated and secure login area for existing sponsors to access their personalized dashboard.
+   2. **Child Updates**: Provides access to updates, stories, and progress reports about their sponsored child, fostering a direct connection and demonstrating impact.
+   3. **Donation History**: Allows sponsors to view a comprehensive record of their past donations and financial contributions.
+   4. **Automated Communication**: Displays automated thank-you messages and important announcements from the foundation.
 
 3. **General Information Pages**
-    1. **About Us**: Details the Prisha Foundation's mission, vision, values, and team.
-    2. **Contact Us**: Provides various methods for visitors to get in touch with the foundation.
+   1. **About Us**: Details the Prisha Foundation's mission, vision, values, and team.
+   2. **Contact Us**: Provides various methods for visitors to get in touch with the foundation.

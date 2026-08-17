@@ -1,7 +1,7 @@
 ---
 title: Wild Palace Safari Lodge Social Media Designs
 description: Wild Palace Safari Lodge Social Media Designs
-thumbnailUrl: /images/my-work/wild-palace-safari-lodge-social-media-designs/thumbnail.png
+thumbnailUrl: /images/my-work/wild-palace-safari-lodge-social-media-designs/thumbnail.webp
 publishedOn: 2025-06-01
 category: design
 technologies:

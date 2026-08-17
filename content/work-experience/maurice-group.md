@@ -16,11 +16,11 @@ images:
     caption: Dashboard of the internal order management system.
   - src: /images/work-experience/maurice-group/receiving-gift-for-most-hardworking.jpg
     caption: Screenshot of the customer-facing mobile e-commerce application.
-  - src: /images/work-experience/maurice-group/maurice-cakes-social-media-designs-thumbnail.png
+  - src: /images/work-experience/maurice-group/maurice-cakes-social-media-designs-thumbnail.webp
     caption: Social media graphics for Maurice Cakes & Events
-  - src: /images/work-experience/maurice-group/maurice-bread-products.jpg
+  - src: /images/work-experience/maurice-group/maurice-bread-products.webp
     caption: Sitting at my desk
-  - src: /images/work-experience/maurice-group/sports-activities.jpg
+  - src: /images/work-experience/maurice-group/sports-activities.webp
     caption: Sitting at my desk
   - src: /images/work-experience/maurice-group/sitting-at-my-desk.jpeg
     caption: Sitting at my desk

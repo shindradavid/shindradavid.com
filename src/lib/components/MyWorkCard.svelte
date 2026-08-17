@@ -7,11 +7,20 @@
 <a href="/my-work/{project.slug}" class="project-card-link">
 	<article class="project-card">
 		<div class="aspect-ratio-16x9">
-			<img src={project.thumbnailUrl} alt={project.title} class="project-image" />
+			<img
+				src={project.thumbnailUrl}
+				alt="Preview of {project.title}"
+				class="project-image"
+				width="1024"
+				height="576"
+				loading="lazy"
+				decoding="async"
+			/>
 		</div>
 
 		<div class="project-content">
 			<h3 class="project-title">{project.title}</h3>
+			<p class="project-description">{project.description}</p>
 
 			<div class="project-meta">
 				<div class="category-tag">{project.category === 'software' ? 'Software' : 'Design'}</div>
@@ -26,9 +35,21 @@
 	@use '../../styles/utils';
 
 	.project-card-link {
+		display: block;
+		height: 100%;
 		text-decoration: none;
+		border-radius: var(--radius-sm);
+
+		&:focus-visible {
+			outline: 3px solid var(--clr-accent-1);
+			outline-offset: 4px;
+		}
 
 		.project-card {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			overflow: hidden;
 			background-color: var(--clr-bg-secondary);
 			border-radius: var(--radius-sm);
 			box-shadow: var(--shadow-md);
@@ -42,8 +63,11 @@
 			}
 
 			.project-image {
-				border-top-left-radius: var(--radius-base);
-				border-top-right-radius: var(--radius-base);
+				transition: transform var(--animation-speed-normal) var(--animation-fn-ease-out);
+			}
+
+			&:hover .project-image {
+				transform: scale(1.025);
 			}
 
 			.project-content {
@@ -58,6 +82,12 @@
 					color: var(--clr-txt-primary-on-bg-secondary); // Primary text color for title
 					margin-top: 0; // Remove default top margin
 					margin-bottom: var(--spacing-sm); // Space below title
+				}
+
+				.project-description {
+					color: var(--clr-txt-secondary-on-bg-secondary);
+					font-size: var(--fs-sm);
+					margin-bottom: var(--spacing-sm);
 				}
 
 				.project-meta {

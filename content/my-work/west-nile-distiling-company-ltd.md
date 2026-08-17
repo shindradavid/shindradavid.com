@@ -1,7 +1,7 @@
 ---
 title: West Nile Distilling Company LTD Marketing Website
 description: Marketing website
-thumbnailUrl: /images/my-work/west-nile-distilling-company-ltd/thumbnail.png
+thumbnailUrl: /images/my-work/west-nile-distilling-company-ltd/thumbnail.webp
 publishedOn: 2025-07-01
 category: software
 technologies:

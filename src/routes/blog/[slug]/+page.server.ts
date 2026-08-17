@@ -7,18 +7,14 @@ import { parseMarkdown } from '$lib/server/markdown/utils';
 import { getBlogPosts } from '$lib/server/markdown/utils';
 
 import { postDirPath } from '$lib/config';
-
-type Frontmatter = {
-	title: string;
-	description: string;
-	thumbnailUrl: string;
-	publishedOn: string;
-	tags: string[];
-};
+import type { Frontmatter } from '$lib/types';
+import { error } from '@sveltejs/kit';
 
 export const load = (async ({ params }) => {
 	const { slug } = params;
-	const markdown = await fs.readFile(`${postDirPath}/${slug}.md`, 'utf-8');
+	const filePath = `${postDirPath}/${slug}.md`;
+	if (!(await fs.pathExists(filePath))) error(404, 'Post not found');
+	const markdown = await fs.readFile(filePath, 'utf-8');
 	const { html, frontmatter } = await parseMarkdown<Frontmatter>(markdown);
 
 	return { html, frontmatter };

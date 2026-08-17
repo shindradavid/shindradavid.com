@@ -21,7 +21,7 @@ class ThemeState {
 		if (browser) {
 			document.body.setAttribute('data-theme', newTheme);
 			Cookie.set('theme', newTheme, {
-				expires: 60 * 60 * 24 * 14 * 1000,
+				expires: 14,
 				path: '/',
 				httpOnly: false
 			});

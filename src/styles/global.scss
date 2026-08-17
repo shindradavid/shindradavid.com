@@ -18,6 +18,37 @@
 	border-width: 0;
 }
 
+.container {
+	width: min(1180px, calc(100% - 40px));
+	margin-inline: auto;
+}
+
+.section {
+	padding-block: clamp(64px, 9vw, 112px);
+}
+
+.section-header {
+	max-width: 680px;
+	margin-bottom: var(--spacing-3xl);
+
+	h2 {
+		font-size: clamp(var(--fs-xl), 4vw, var(--fs-2xl));
+		line-height: 1.15;
+		color: var(--clr-txt-primary-on-bg-primary);
+		margin-bottom: var(--spacing-sm);
+	}
+}
+
+.eyebrow {
+	display: inline-block;
+	color: var(--clr-accent-1);
+	font-size: var(--fs-sm);
+	font-weight: var(--fw-bold);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	margin-bottom: var(--spacing-sm);
+}
+
 .aspect-ratio-16x9 {
 	width: 100%; /* Set the container width to 100% to make it responsive */
 	padding-bottom: 56.25%; /* Maintain a 16x9 aspect ratio (16/9 = 1.7778 or 56.25%) */

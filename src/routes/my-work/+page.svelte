@@ -3,6 +3,7 @@
 	import MyWorkCard from '$lib/components/MyWorkCard.svelte';
 
 	import type { PageData } from './$types';
+	import { getProjectServiceTypes } from '$lib/utils/projects';
 
 	interface Props {
 		data: PageData;
@@ -12,14 +13,19 @@
 
 	const { projects } = data;
 
-	let activeCategory = $state<'all' | 'software' | 'design'>('all');
+	type Filter = 'all' | 'web' | 'business-system' | 'design';
+	let activeCategory = $state<Filter>('all');
 
 	let filteredProjects = $derived(
 		projects.filter((project) => {
 			if (activeCategory === 'all') {
 				return true;
 			}
-			return project.category === activeCategory;
+			const serviceTypes = getProjectServiceTypes(project);
+			if (activeCategory === 'web') {
+				return serviceTypes.includes('business-website') || serviceTypes.includes('ecommerce');
+			}
+			return serviceTypes.includes(activeCategory);
 		})
 	);
 </script>
@@ -29,7 +35,7 @@
 	description="Explore my portfolio of web and mobile app projects built with SvelteKit, React, React Native, Node.js, and PostgreSQL. See how I bring ideas to life through clean code and creative design."
 />
 
-<main class="main work-page">
+<main class="main work-page container">
 	<section class="page-header hero-section">
 		<h1>My Work</h1>
 		<p>
@@ -40,19 +46,33 @@
 
 	<section class="filter-section">
 		<button
+			type="button"
 			class="button {activeCategory === 'all' ? 'primary' : 'secondary'}"
+			aria-pressed={activeCategory === 'all'}
 			onclick={() => (activeCategory = 'all')}
 		>
 			All
 		</button>
 		<button
-			class="button {activeCategory === 'software' ? 'primary' : 'secondary'}"
-			onclick={() => (activeCategory = 'software')}
+			type="button"
+			class="button {activeCategory === 'web' ? 'primary' : 'secondary'}"
+			aria-pressed={activeCategory === 'web'}
+			onclick={() => (activeCategory = 'web')}
 		>
-			Software Development
+			Websites & E-commerce
 		</button>
 		<button
+			type="button"
+			class="button {activeCategory === 'business-system' ? 'primary' : 'secondary'}"
+			aria-pressed={activeCategory === 'business-system'}
+			onclick={() => (activeCategory = 'business-system')}
+		>
+			Business Systems
+		</button>
+		<button
+			type="button"
 			class="button {activeCategory === 'design' ? 'primary' : 'secondary'}"
+			aria-pressed={activeCategory === 'design'}
 			onclick={() => (activeCategory = 'design')}
 		>
 			Design
@@ -60,6 +80,7 @@
 	</section>
 
 	<section class="projects-grid-section">
+		<p class="sr-only" aria-live="polite">Showing {filteredProjects.length} projects</p>
 		{#each filteredProjects as project (project.slug)}
 			<MyWorkCard {project} />
 		{/each}
@@ -73,7 +94,6 @@
 </main>
 
 <style lang="scss">
-	@use 'sass:color';
 	@use '../../styles/utils';
 
 	// Base styling for the entire work page
@@ -137,8 +157,8 @@
 		padding-bottom: var(--spacing-9xl);
 
 		@include utils.respond-to('md-screens') {
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: var(--spacing-md);
+			grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+			gap: var(--spacing-2xl) var(--spacing-xl);
 		}
 
 		.no-projects-message {

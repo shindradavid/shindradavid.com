@@ -1,9 +1,13 @@
 ---
 title: OHN'S Transportation Company Website
 description: OHN'S Transportation Company Marketing Website
-thumbnailUrl: /images/my-work/ohns-transportation-company-website/thumbnail.png
+thumbnailUrl: /images/my-work/ohns-transportation-company-website/thumbnail.webp
 publishedOn: 2025-10-11
 category: software
+featuredRank: 3
+serviceTypes:
+  - business-website
+  - mobile-app
 technologies:
   - React
 client: OHN'S TRANSPORTATION COMPANY

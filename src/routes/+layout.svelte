@@ -2,17 +2,14 @@
 	import '../styles/global.scss';
 
 	import type { LayoutData } from './$types';
-
-	import NavLink from './NavLink.svelte';
-
-	import { detectClickOutside } from '$lib/actions';
-
+	import type { Snippet } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 
-	import type { Snippet } from 'svelte';
-
-	import { setThemeContext } from '$lib/state.svelte';
+	import NavLink from './NavLink.svelte';
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
+	import { detectClickOutside } from '$lib/actions';
+	import { setThemeContext } from '$lib/state.svelte';
+	import { getWhatsAppUrl } from '$lib/site';
 
 	interface Props {
 		data: LayoutData;
@@ -20,138 +17,245 @@
 	}
 
 	const { children, data }: Props = $props();
-
 	let openDrawer = $state(false);
+	const footerNavigation = [
+		{ href: '/', label: 'Home' },
+		{ href: '/my-work', label: 'Work' },
+		{ href: '/services', label: 'Services' },
+		{ href: '/about-me', label: 'About' },
+		{ href: '/blog', label: 'Blog' }
+	];
+	const socialLinks = [
+		{ href: 'https://linkedin.com/in/shindradavid', label: 'LinkedIn' },
+		{ href: 'https://github.com/shindradavid', label: 'GitHub' },
+		{ href: 'https://x.com/shindradavid', label: 'X / Twitter' },
+		{ href: 'https://instagram.com/shindra_david', label: 'Instagram' }
+	];
 
-	const themeState = setThemeContext(data.theme);
+	setThemeContext(data.theme);
 
 	afterNavigate(() => {
 		openDrawer = false;
 	});
+
+	function closeOnEscape(event: KeyboardEvent) {
+		if (event.key === 'Escape') openDrawer = false;
+	}
 </script>
 
 <svelte:head>
 	<meta name="theme-color" content="#16181d" />
 	<link rel="stylesheet" href="/remixicon/remixicon.css" />
-	<!-- <link rel="manifest" href="manifest.webmanifest" /> -->
-	<link rel="alternate" href="/rss.xml" type="application/rss+xml" title="RSS" />
+	<link rel="alternate" href="/rss.xml" type="application/rss+xml" title="Shindra David RSS" />
 </svelte:head>
 
+<svelte:window onkeydown={closeOnEscape} />
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+
 <header class="header">
-	<a href="/" class="header__logo">
-		<img src="/images/logo.png" alt="Shindra David" />
+	<a href="/" class="header__logo" aria-label="Shindra David, home">
+		<img src="/images/logo.webp" alt="" width="48" height="48" decoding="async" />
+		<span>Shindra David</span>
 	</a>
 
-	<nav class="header__desktop-nav">
+	<nav class="header__desktop-nav" aria-label="Main navigation">
 		<NavLink href="/" name="Home" />
-		<NavLink href="/about-me" name="About me" />
-		<NavLink href="/work-experience" name="Work experience" />
-		<NavLink href="/my-work" name="My work" />
-		<!-- <NavLink href="/blog" name="Blog" /> -->
+		<NavLink href="/my-work" name="Work" />
+		<NavLink href="/services" name="Services" />
+		<NavLink href="/about-me" name="About" />
+		<NavLink href="/blog" name="Blog" />
 	</nav>
 
-	<a href="/lets-connect" class="header__cta btn primary w-fit-content">Let's connect</a>
+	<a
+		href={getWhatsAppUrl()}
+		class="header__cta btn primary"
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		Start a project
+	</a>
 
 	<button
+		type="button"
 		class="header__burger"
-		aria-label="Open navigation menu"
+		aria-label={openDrawer ? 'Close navigation menu' : 'Open navigation menu'}
+		aria-expanded={openDrawer}
+		aria-controls="mobile-navigation"
 		onclick={() => (openDrawer = !openDrawer)}
 	>
-		<i class="ri-menu-line"></i>
+		<i class={openDrawer ? 'ri-close-line' : 'ri-menu-line'} aria-hidden="true"></i>
 	</button>
 </header>
 
-<nav
-	class="mobile-nav"
-	class:open={openDrawer}
-	use:detectClickOutside
-	onclickOutside={() => (openDrawer = false)}
->
-	<NavLink href="/" name="Home" />
-	<NavLink href="/about-me" name="About me" />
-	<NavLink href="/work-experience" name="Work experience" />
-	<NavLink href="/my-work" name="My work" />
-	<!-- <NavLink href="/blog" name="Blog" /> -->
+{#if openDrawer}
+	<nav
+		id="mobile-navigation"
+		class="mobile-nav"
+		aria-label="Mobile navigation"
+		use:detectClickOutside
+		onclickOutside={() => (openDrawer = false)}
+	>
+		<NavLink href="/" name="Home" />
+		<NavLink href="/my-work" name="Work" />
+		<NavLink href="/services" name="Services" />
+		<NavLink href="/about-me" name="About" />
+		<NavLink href="/blog" name="Blog" />
+		<a
+			href={getWhatsAppUrl()}
+			class="mobile-nav__cta btn primary"
+			target="_blank"
+			rel="noopener noreferrer">Start a project</a
+		>
+		<ThemeSwitcher />
+	</nav>
+{/if}
 
-	<a href="/lets-connect" class="mobile-nav__cta btn primary w-fit-content"> Let's connect </a>
-
-	<ThemeSwitcher />
-</nav>
-
-<div class="main">
+<div class="main" id="main-content">
 	{@render children()}
 </div>
 
 <footer class="footer">
-	<p class="footer__copy">&copy; Shindra David {new Date().getFullYear()}. All rights reserved.</p>
-	<p class="footer__credits">
-		Built with <span style="color: hsl(0, 74%, 50%);"><i class="ri-heart-fill"></i></span> and
-		<span style="color: hsl(12, 98%, 50%);"><i class="ri-svelte-fill"></i></span>
-		by
-		<a href="http://twitter.com/shindradavid" target="_blank" rel="noopener noreferrer">
-			Shindra David
-		</a>
-	</p>
+	<div class="footer__shell">
+		<section class="footer__cta" aria-labelledby="footer-cta-title">
+			<div>
+				<p class="footer__availability">
+					<span aria-hidden="true"></span> Available for selected projects
+				</p>
+				<h2 id="footer-cta-title">Ready to improve how your business works online?</h2>
+				<p>
+					Tell me what you want to build or improve, and I’ll help you identify the right next step.
+				</p>
+			</div>
+			<a
+				href={getWhatsAppUrl(
+					'Hi Shindra, I found your portfolio and would like to discuss a project for my business.'
+				)}
+				class="btn primary footer__cta-button"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				Start a conversation <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+			</a>
+		</section>
 
-	<ThemeSwitcher />
+		<div class="footer__main">
+			<div class="footer__brand">
+				<a href="/" class="footer__identity" aria-label="Shindra David, home">
+					<img src="/images/logo.webp" alt="" width="48" height="48" loading="lazy" />
+					<span>Shindra David</span>
+				</a>
+				<p>Full-stack developer building useful websites and business systems for growing SMEs.</p>
+				<p class="footer__location">
+					<i class="ri-map-pin-2-line" aria-hidden="true"></i> Kampala, Uganda
+				</p>
+			</div>
+
+			<nav class="footer__links" aria-label="Footer navigation">
+				<p>Explore</p>
+				{#each footerNavigation as link}
+					<a href={link.href}>{link.label}</a>
+				{/each}
+			</nav>
+
+			<nav class="footer__links" aria-label="Social links">
+				<p>Connect</p>
+				<a href="/lets-connect">Contact</a>
+				{#each socialLinks as link}
+					<a href={link.href} target="_blank" rel="noopener noreferrer">
+						{link.label}<i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+					</a>
+				{/each}
+			</nav>
+		</div>
+
+		<div class="footer__bottom">
+			<p>&copy; {new Date().getFullYear()} Shindra David. All rights reserved.</p>
+			<div class="footer__utilities">
+				<a href="/rss.xml"><i class="ri-rss-line" aria-hidden="true"></i> RSS</a>
+				<div class="footer__theme">
+					<span>Theme</span>
+					<ThemeSwitcher />
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>
 
 <style lang="scss">
 	@use '../styles/utils';
 
+	.skip-link {
+		position: fixed;
+		top: var(--spacing-sm);
+		left: var(--spacing-sm);
+		z-index: utils.z('max');
+		padding: var(--spacing-sm) var(--spacing-md);
+		background: var(--clr-accent-1);
+		color: var(--clr-txt-primary-on-btn-bg-primary);
+		transform: translateY(-160%);
+
+		&:focus {
+			transform: translateY(0);
+		}
+	}
+
 	.header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: var(--header-height);
-		padding: var(--spacing-sm);
+		height: 72px;
+		padding: 10px 12px;
 		position: fixed;
 		z-index: utils.z('header', 'base');
-		top: var(--spacing-sm);
+		top: 12px;
 		left: 50%;
-		transform: translate(-50%, 0);
+		transform: translateX(-50%);
 		background-color: var(--clr-bg-primary-alpha);
-		backdrop-filter: blur(4px);
-		width: 86vw;
-		border-radius: 280px;
+		backdrop-filter: blur(14px);
+		width: min(1180px, calc(100% - 24px));
+		border-radius: 999px;
 		box-shadow: var(--shadow-md);
-		border: 1px solid var(--clr-divider-primary-on-bg-primary);
-
-		@include utils.respond-to('lg-screens') {
-			width: 72vw;
-		}
+		border: 1px solid var(--clr-divider-tertiary-on-bg-primary);
 
 		&__logo {
+			display: flex;
+			align-items: center;
+			gap: var(--spacing-sm);
+			text-decoration: none;
+			font-weight: var(--fw-bold);
+			color: var(--clr-txt-primary-on-bg-primary);
+
 			img {
-				height: 48px;
-				width: 48px;
 				border-radius: 50%;
+			}
+
+			span {
+				display: none;
+
+				@include utils.respond-to('md-screens') {
+					display: inline;
+				}
 			}
 		}
 
-		&__desktop-nav {
+		&__desktop-nav,
+		&__cta {
 			display: none;
+		}
 
-			&-cta {
-				@include utils.respond-to('lg-screens') {
-					display: none;
-				}
-			}
+		@include utils.respond-to('lg-screens') {
+			padding-inline: var(--spacing-md);
 
-			@include utils.respond-to('lg-screens') {
+			&__desktop-nav {
 				display: flex;
 				align-items: center;
 				gap: var(--spacing-xl);
 			}
-		}
 
-		&__cta {
-			display: none;
-
-			@include utils.respond-to('lg-screens') {
-				display: block;
-				border-radius: 64px;
-				font-weight: var(--fw-bold);
+			&__cta {
+				display: inline-flex;
+				border-radius: 999px;
 			}
 		}
 
@@ -159,10 +263,10 @@
 			height: 48px;
 			width: 48px;
 			border-radius: 50%;
-			border: 1px solid var(--clr-divider-primary-on-bg-primary);
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			border: 1px solid var(--clr-divider-tertiary-on-bg-primary);
+			display: grid;
+			place-items: center;
+			font-size: var(--fs-lg);
 
 			@include utils.respond-to('lg-screens') {
 				display: none;
@@ -177,60 +281,197 @@
 		gap: var(--spacing-lg);
 		position: fixed;
 		z-index: utils.z('header', 'nav');
-		top: calc(var(--header-height) + var(--spacing-md));
-		left: 50%;
-		transform: translate(-50%, 0);
-		width: 86vw;
+		top: 92px;
+		left: 12px;
+		width: calc(100% - 24px);
 		background-color: var(--clr-bg-primary-alpha);
-		backdrop-filter: blur(4px);
-		padding: var(--spacing-lg) 0;
-		border-radius: 28px;
-		border: 1px solid var(--clr-divider-primary-on-bg-primary);
+		backdrop-filter: blur(14px);
+		padding: var(--spacing-xl);
+		border-radius: var(--radius-base);
+		border: 1px solid var(--clr-divider-tertiary-on-bg-primary);
+		box-shadow: var(--shadow-lg);
 
-		/* Transition effect */
-		max-height: 0;
-		overflow: hidden;
-		opacity: 0;
-		transition:
-			max-height 0.4s ease-in-out,
-			opacity 0.3s ease-in-out;
+		&__cta {
+			width: 100%;
+		}
 
 		@include utils.respond-to('lg-screens') {
 			display: none;
 		}
-
-		&.open {
-			max-height: 480px;
-			opacity: 1;
-		}
 	}
 
 	.main {
-		margin-top: calc(var(--header-height) + var(--spacing-lg));
-		@include utils.add-section-lr-padding();
+		padding-top: 96px;
+		min-height: 70vh;
 	}
 
 	.footer {
-		text-align: center;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		gap: var(--spacing-xs);
-		margin: var(--spacing-lg) 0 0 0;
-		padding: var(--spacing-lg) 0;
-		border-top: 1px solid var(--clr-divider-secondary-on-bg-primary);
-		@include utils.add-section-lr-padding();
+		padding: var(--spacing-xl) max(20px, calc((100% - 1180px) / 2)) var(--spacing-lg);
+		background: var(--clr-bg-secondary);
+		border-top: 1px solid var(--clr-divider-primary-on-bg-secondary);
 
-		p {
-			margin: 0;
+		&__shell {
+			max-width: 1180px;
+			margin-inline: auto;
 		}
 
-		&__copy {
+		&__cta {
+			display: grid;
+			align-items: end;
+			gap: var(--spacing-2xl);
+			position: relative;
+			overflow: hidden;
+			padding: clamp(28px, 5vw, 56px);
+			background: var(--clr-bg-primary);
+			border: 1px solid var(--clr-divider-tertiary-on-bg-primary);
+			border-radius: var(--radius-base);
+			box-shadow: inset 4px 0 0 var(--clr-accent-1);
+
+			@include utils.respond-to('md-screens') {
+				grid-template-columns: minmax(0, 1fr) auto;
+			}
+
+			> div {
+				max-width: 780px;
+			}
+
+			h2 {
+				font-size: clamp(var(--fs-xl), 4vw, 4.8rem);
+				line-height: 1.1;
+				letter-spacing: -0.025em;
+				color: var(--clr-txt-primary-on-bg-primary);
+				margin-bottom: var(--spacing-sm);
+			}
+		}
+
+		&__availability {
+			display: flex;
+			align-items: center;
+			gap: var(--spacing-sm);
+			width: fit-content;
+			font-size: var(--fs-xs);
+			font-weight: var(--fw-bold);
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			margin-bottom: var(--spacing-md);
+
+			span {
+				width: 8px;
+				height: 8px;
+				background: var(--clr-ok);
+				border-radius: 50%;
+				box-shadow: 0 0 0 4px var(--clr-bg-success);
+			}
+		}
+
+		&__cta-button {
+			width: fit-content;
+			white-space: nowrap;
+			padding: 14px 20px;
+		}
+
+		&__main {
+			display: grid;
+			gap: var(--spacing-2xl);
+			padding-block: var(--spacing-3xl);
+
+			@include utils.respond-to('md-screens') {
+				grid-template-columns: minmax(300px, 1.8fr) repeat(2, minmax(140px, 0.6fr));
+			}
+		}
+
+		&__brand {
+			max-width: 460px;
+
+			> p:not(.footer__location) {
+				margin-block: var(--spacing-md);
+			}
+		}
+
+		&__identity {
+			display: inline-flex;
+			align-items: center;
+			gap: var(--spacing-sm);
+			font-family: var(--ff-headings);
+			font-size: var(--fs-md);
+			font-weight: var(--fw-bold);
+			text-decoration: none;
+			color: var(--clr-txt-primary-on-bg-secondary);
+
+			img {
+				border-radius: 50%;
+			}
+		}
+
+		&__location {
+			display: flex;
+			align-items: center;
+			gap: var(--spacing-xs);
 			font-size: var(--fs-sm);
 		}
 
-		&__credits {
+		&__links {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: var(--spacing-sm);
+
+			p {
+				font-size: var(--fs-xs);
+				font-weight: var(--fw-bold);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				color: var(--clr-txt-primary-on-bg-secondary);
+				margin-bottom: var(--spacing-sm);
+			}
+
+			a {
+				display: inline-flex;
+				align-items: center;
+				gap: var(--spacing-xs);
+				text-decoration: none;
+				font-size: var(--fs-sm);
+
+				&:hover {
+					color: var(--clr-accent-1);
+				}
+
+				i {
+					font-size: var(--fs-base);
+				}
+			}
+		}
+
+		&__bottom {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			gap: var(--spacing-md) var(--spacing-xl);
+			font-size: var(--fs-sm);
+			padding-top: var(--spacing-lg);
+			border-top: 1px solid var(--clr-divider-primary-on-bg-secondary);
+		}
+
+		&__utilities,
+		&__theme {
+			display: flex;
+			align-items: center;
+			gap: var(--spacing-md);
+		}
+
+		&__utilities > a {
+			display: inline-flex;
+			align-items: center;
+			gap: var(--spacing-xs);
+			text-decoration: none;
+		}
+
+		&__theme > span {
 			font-size: var(--fs-xs);
+			font-weight: var(--fw-bold);
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
 		}
 	}
 </style>

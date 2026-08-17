@@ -7,13 +7,13 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"start": "HOST=localhost PORT=5000 ORIGIN=https://shindradavid.com node build",
-		"test": "npm run test:integration && npm run test:unit",
+		"test": "pnpm test:integration && pnpm test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest"
+		"test:unit": "vitest --run"
 	},
 	"devDependencies": {
 		"@jsdevtools/rehype-toc": "^3.0.2",

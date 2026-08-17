@@ -54,7 +54,6 @@ input,
 button,
 textarea,
 select {
-	outline: none;
 	border: none;
 	background-color: inherit;
 	color: inherit;
@@ -84,6 +83,11 @@ h6 {
 a {
 	color: inherit;
 	font-weight: 500;
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+	outline: 3px solid var(--clr-accent-1);
+	outline-offset: 3px;
 }
 
 html:focus-within {

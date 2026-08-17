@@ -1,23 +1,24 @@
 ---
 title: How I integrate AI into my daily workflow.
 description: AI has transformed my daily workflow. This article delves into the practical, day-to-day applications of AI tools in my workflow.
-thumbnailUrl: /images/posts/how-i-integrate-ai-into-my-daily-workflow/thumbnail.png
+thumbnailUrl: /images/posts/how-i-integrate-ai-into-my-daily-workflow/thumbnail.webp
 publishedOn: 2025-03-30
 tags:
   - ai
 ---
 
-As a solo fullstack software developer, I’m responsible for everything — from architecture to deployment, from backend security to frontend UX. I build 
+As a solo fullstack software developer, I’m responsible for everything — from architecture to deployment, from backend security to frontend UX. I build
 systems for real businesses: NGOs that manage sponsorships, bakeries that take custom orders, and foundations that track donations.
 
 With so many responsibilities, I’ve learned to lean on the right tools. And one of the most powerful tools in my daily workflow is AI.
 
 But not in the “AI will replace developers” way.
 
-Instead, I use AI as a silent partner — helping me think faster, debug quicker, and deliver quality software at speed. This post is my honest 
+Instead, I use AI as a silent partner — helping me think faster, debug quicker, and deliver quality software at speed. This post is my honest
 breakdown of how I use AI, where I draw the line, and what I believe developers and business owners should know.
 
 ## Why I Use AI Every Day
+
 I don’t use AI because it’s trendy — I use it because it’s effective.
 
 When you’re a one-person development team, time is your scarcest resource. AI helps me:

@@ -5,6 +5,7 @@ import fs from 'fs-extra';
 import grayMatter from 'gray-matter';
 
 import type { Post, Frontmatter } from '$lib/types';
+import { validatePostFrontmatter } from './validateFrontmatter';
 
 export default async () => {
 	try {
@@ -19,6 +20,7 @@ export default async () => {
 			const file = await fs.readFile(`${postDirPath}/${markdownFile}`, 'utf-8');
 
 			const { data } = grayMatter(file);
+			validatePostFrontmatter(data, markdownFile);
 
 			posts.push({
 				slug: markdownFile.slice(0, -3),
@@ -32,6 +34,8 @@ export default async () => {
 
 		return posts;
 	} catch (err) {
-		throw Error('Failed to get blog posts');
+		throw new Error(
+			`Failed to get blog posts: ${err instanceof Error ? err.message : String(err)}`
+		);
 	}
 };
