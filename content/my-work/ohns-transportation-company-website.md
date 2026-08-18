@@ -4,6 +4,7 @@ description: OHN'S Transportation Company Marketing Website
 thumbnailUrl: /images/my-work/ohns-transportation-company-website/thumbnail.webp
 publishedOn: 2025-10-11
 category: software
+isFeatured: true
 featuredRank: 3
 serviceTypes:
   - business-website

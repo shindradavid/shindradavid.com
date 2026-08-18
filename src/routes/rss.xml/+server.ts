@@ -6,6 +6,8 @@ import { siteUrl } from '$lib/config';
 
 import RSS from 'rss';
 
+export const prerender = true;
+
 export const GET: RequestHandler = async () => {
 	const posts = await getBlogPosts();
 

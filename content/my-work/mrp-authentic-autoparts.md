@@ -4,6 +4,7 @@ description: Marketing website with inventory management system for a premium au
 thumbnailUrl: /images/my-work/mrp-authentic-autoparts/cover.webp
 publishedOn: 2026-03-31
 category: software
+isFeatured: true
 featuredRank: 2
 serviceTypes:
   - business-website

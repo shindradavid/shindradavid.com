@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 
 import { getWorkExperience, parseMarkdown } from '$lib/server/markdown/utils';
 
-import { workExperienceDirPath } from '$lib/config';
+import { workExperienceDirPath } from '$lib/server/markdown/paths';
 import type { ExperienceFrontmatter } from '$lib/types';
 import { error } from '@sveltejs/kit';
 

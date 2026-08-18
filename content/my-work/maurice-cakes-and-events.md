@@ -4,6 +4,7 @@ description: A connected commerce and operations platform that helps a busy bake
 thumbnailUrl: /images/my-work/maurice-cakes-and-events/cover.webp
 publishedOn: 2026-03-31
 category: software
+isFeatured: true
 featuredRank: 1
 serviceTypes:
   - ecommerce

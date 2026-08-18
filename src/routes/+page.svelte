@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	import { MyWorkCard, PostCard, Seo } from '$lib/components';
+	import { FeaturedProjectCarousel, MyWorkCard, PostCard, Seo } from '$lib/components';
 	import ServiceCard from '$lib/components/ServiceCard.svelte';
 	import { getWhatsAppUrl, services, site } from '$lib/site';
 
@@ -42,10 +42,7 @@
 			</p>
 		</div>
 
-		<div class="hero__portrait" aria-hidden="true">
-			<div class="hero__glow"></div>
-			<img src="/images/logo.webp" alt="" width="720" height="720" fetchpriority="high" />
-		</div>
+		<FeaturedProjectCarousel projects={featuredProjects} />
 	</section>
 
 	<section class="section container" id="featured-work">
@@ -189,7 +186,7 @@
 		padding-block: clamp(48px, 8vw, 96px);
 
 		@include utils.respond-to('md-screens') {
-			grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+			grid-template-columns: minmax(0, 1fr) minmax(360px, 1fr);
 		}
 
 		&__content {
@@ -197,7 +194,7 @@
 		}
 
 		h1 {
-			font-size: clamp(4rem, 7vw, 7.6rem);
+			font-size: clamp(3rem, 5vw, 5rem);
 			line-height: 1.03;
 			letter-spacing: -0.04em;
 			color: var(--clr-txt-primary-on-bg-primary);
@@ -205,7 +202,7 @@
 		}
 
 		&__content > p:not(.hero__note) {
-			font-size: clamp(var(--fs-md), 2vw, var(--fs-lg));
+			font-size: clamp(var(--fs-base), 2vw, var(--fs-md));
 			max-width: 660px;
 		}
 
@@ -229,28 +226,6 @@
 			span {
 				color: var(--clr-ok);
 			}
-		}
-
-		&__portrait {
-			position: relative;
-			width: min(100%, 440px);
-			justify-self: center;
-
-			img {
-				position: relative;
-				z-index: 1;
-				width: 100%;
-				height: auto;
-				border-radius: 50%;
-			}
-		}
-
-		&__glow {
-			position: absolute;
-			inset: 12%;
-			background: var(--clr-accent-1);
-			filter: blur(70px);
-			opacity: 0.28;
 		}
 	}
 

@@ -3,7 +3,7 @@ import type { PageServerLoad, EntryGenerator } from './$types';
 import fs from 'fs-extra';
 
 import { getMyWork, parseMarkdown } from '$lib/server/markdown/utils';
-import { myWorkDirPath } from '$lib/config';
+import { myWorkDirPath } from '$lib/server/markdown/paths';
 import type { ProjectFrontmatter } from '$lib/types';
 import { error } from '@sveltejs/kit';
 

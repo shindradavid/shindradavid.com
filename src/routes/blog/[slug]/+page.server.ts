@@ -6,7 +6,7 @@ import { parseMarkdown } from '$lib/server/markdown/utils';
 
 import { getBlogPosts } from '$lib/server/markdown/utils';
 
-import { postDirPath } from '$lib/config';
+import { postDirPath } from '$lib/server/markdown/paths';
 import type { Frontmatter } from '$lib/types';
 import { error } from '@sveltejs/kit';
 

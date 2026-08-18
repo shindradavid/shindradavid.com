@@ -20,9 +20,9 @@
 	let openDrawer = $state(false);
 	const footerNavigation = [
 		{ href: '/', label: 'Home' },
-		{ href: '/my-work', label: 'Work' },
+		{ href: '/my-work', label: 'My work' },
 		{ href: '/services', label: 'Services' },
-		{ href: '/about-me', label: 'About' },
+		{ href: '/about-me', label: 'About me' },
 		{ href: '/blog', label: 'Blog' }
 	];
 	const socialLinks = [

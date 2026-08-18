@@ -89,6 +89,21 @@ export function validateProjectFrontmatter(
 	if (typeof data.isPublished !== 'boolean') {
 		fail(source, 'isPublished', 'must be a boolean');
 	}
+	if (data.isFeatured !== undefined && typeof data.isFeatured !== 'boolean') {
+		fail(source, 'isFeatured', 'must be a boolean');
+	}
+	if (
+		data.featuredRank !== undefined &&
+		(!Number.isInteger(data.featuredRank) || (data.featuredRank as number) <= 0)
+	) {
+		fail(source, 'featuredRank', 'must be a positive integer');
+	}
+	if (data.isFeatured === true && data.featuredRank === undefined) {
+		fail(source, 'featuredRank', 'is required when "isFeatured" is true');
+	}
+	if (data.isFeatured !== true && data.featuredRank !== undefined) {
+		fail(source, 'featuredRank', 'requires "isFeatured" to be true');
+	}
 }
 
 export function validateExperienceFrontmatter(

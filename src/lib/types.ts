@@ -40,6 +40,7 @@ export interface ProjectFrontmatter {
 	role?: string;
 	duration?: string;
 	serviceTypes?: ServiceType[];
+	isFeatured?: boolean;
 	featuredRank?: number;
 	outcomes?: string[];
 	testimonial?: Testimonial;

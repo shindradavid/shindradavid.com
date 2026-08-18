@@ -3,6 +3,8 @@ import type { RequestHandler } from './$types';
 import { getBlogPosts, getMyWork, getWorkExperience } from '$lib/server/markdown/utils';
 import { siteUrl } from '$lib/config';
 
+export const prerender = true;
+
 export const GET: RequestHandler = async () => {
 	const [posts, projects, experiences] = await Promise.all([
 		getBlogPosts(),

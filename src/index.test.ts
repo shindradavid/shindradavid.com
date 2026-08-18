@@ -7,16 +7,41 @@ import parseMarkdown from '$lib/server/markdown/utils/parseMarkdown';
 import { getWhatsAppUrl, services, site } from '$lib/site';
 import type { ProjectFrontmatter } from '$lib/types';
 import { isPathActive } from '$lib/utils/navigation';
-import { getProjectServiceTypes } from '$lib/utils/projects';
+import { getFeaturedProjects, getProjectServiceTypes } from '$lib/utils/projects';
 
 describe('portfolio content', () => {
 	it('loads published projects with valid images and three featured projects', async () => {
 		const projects = await getMyWork();
-		const featuredProjects = projects.filter((project) => project.featuredRank !== undefined);
+		const featuredProjects = getFeaturedProjects(projects);
 
 		expect(projects.length).toBeGreaterThan(0);
-		expect(featuredProjects).toHaveLength(3);
-		expect(new Set(featuredProjects.map((project) => project.featuredRank)).size).toBe(3);
+		expect(featuredProjects.map((project) => project.slug)).toEqual([
+			'maurice-cakes-and-events',
+			'mrp-authentic-autoparts',
+			'ohns-transportation-company-website'
+		]);
+		expect(featuredProjects.every((project) => project.isFeatured === true)).toBe(true);
+		expect(featuredProjects.map((project) => project.featuredRank)).toEqual([1, 2, 3]);
+	});
+
+	it('rejects missing featured projects and duplicate featured ranks', async () => {
+		const projects = await getMyWork();
+		const withoutFeaturedProjects = projects.map((project) => ({
+			...project,
+			isFeatured: false,
+			featuredRank: undefined
+		}));
+
+		expect(() => getFeaturedProjects(withoutFeaturedProjects)).toThrow(
+			'No featured projects configured'
+		);
+
+		const duplicatedRankProjects = projects.map((project) =>
+			project.slug === 'mrp-authentic-autoparts' ? { ...project, featuredRank: 1 } : project
+		);
+		expect(() => getFeaturedProjects(duplicatedRankProjects)).toThrow(
+			'Featured project rank 1 is used more than once'
+		);
 	});
 
 	it('infers useful service filters for legacy project content', async () => {
