@@ -17,7 +17,7 @@
 	description="Read articles, tutorials, and insights on web development, mobile apps, JavaScript frameworks, and my personal journey as a self-taught developer in Uganda."
 />
 
-<main class="main">
+<main class="main container">
 	<header class="page-header">
 		<h1>Blog</h1>
 		<p>

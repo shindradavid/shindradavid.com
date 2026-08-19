@@ -9,6 +9,17 @@
 	let currentIndex = $state(0);
 	let pointerStart = $state<{ x: number; y: number } | null>(null);
 
+	$effect(() => {
+		if (projects.length <= 1) return;
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+		const autoplay = setInterval(() => {
+			goToSlide(currentIndex + 1);
+		}, 5_000);
+
+		return () => clearInterval(autoplay);
+	});
+
 	let currentProject = $derived(projects[currentIndex]);
 	let slideAnnouncement = $derived(
 		currentProject

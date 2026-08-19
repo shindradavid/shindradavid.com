@@ -29,6 +29,7 @@
 			)}
 			target="_blank"
 			rel="noopener noreferrer"
+			class="btn primary"
 			aria-label="Enquire about {service.title} on WhatsApp"
 		>
 			Discuss this service <span aria-hidden="true">→</span>
@@ -91,9 +92,7 @@
 			border-top: 1px solid var(--clr-divider-tertiary-on-bg-primary);
 
 			a {
-				width: fit-content;
-				font-weight: var(--fw-bold);
-				text-underline-offset: 4px;
+				margin: 0;
 			}
 		}
 

@@ -17,7 +17,7 @@
 	description="Discover my journey as a full-stack developer — from learning HTML and Python to mastering SvelteKit, NestJS, and React Native. See how my experience shapes the work I do today."
 />
 
-<main class="main work-page">
+<main class="main work-page container">
 	<section class="work-experience-section">
 		<h1>Work Experience</h1>
 		<p class="intro-paragraph">

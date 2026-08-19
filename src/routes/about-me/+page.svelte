@@ -95,7 +95,7 @@
 	description="Learn more about my journey from business school to full-stack development. I’m passionate about coding, design, and building software that solves real problems and inspires creativity."
 />
 
-<main>
+<main class="container">
 	<header class="page-header">
 		<h1>About me</h1>
 

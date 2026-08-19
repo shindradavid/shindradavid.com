@@ -22,6 +22,7 @@
 		{ href: '/', label: 'Home' },
 		{ href: '/my-work', label: 'My work' },
 		{ href: '/services', label: 'Services' },
+		{ href: '/work-experience', label: 'Work experience' },
 		{ href: '/about-me', label: 'About me' },
 		{ href: '/blog', label: 'Blog' }
 	];
@@ -61,9 +62,10 @@
 
 	<nav class="header__desktop-nav" aria-label="Main navigation">
 		<NavLink href="/" name="Home" />
-		<NavLink href="/my-work" name="Work" />
+		<NavLink href="/my-work" name="My work" />
 		<NavLink href="/services" name="Services" />
-		<NavLink href="/about-me" name="About" />
+		<NavLink href="/work-experience" name="Work experience" />
+		<NavLink href="/about-me" name="About me" />
 		<NavLink href="/blog" name="Blog" />
 	</nav>
 
@@ -99,6 +101,7 @@
 		<NavLink href="/" name="Home" />
 		<NavLink href="/my-work" name="Work" />
 		<NavLink href="/services" name="Services" />
+		<NavLink href="/work-experience" name="Work experience" />
 		<NavLink href="/about-me" name="About" />
 		<NavLink href="/blog" name="Blog" />
 		<a
@@ -182,8 +185,35 @@
 	</div>
 </footer>
 
+<a
+	href={getWhatsAppUrl()}
+	class="btn whatsapp-fab"
+	target="_blank"
+	rel="noopener noreferrer"
+	aria-label="Chat with Shindra on WhatsApp"
+>
+	<i class="ri-whatsapp-fill" aria-hidden="true"></i>
+</a>
+
 <style lang="scss">
 	@use '../styles/utils';
+
+	.whatsapp-fab {
+		position: fixed;
+		bottom: var(--spacing-xl);
+		right: var(--spacing-md);
+		z-index: utils.z('fab');
+		width: 56px;
+		height: 56px;
+		padding: 0;
+		margin: 0;
+		border-radius: 50%;
+		background-color: #25d366;
+		color: #ffffff;
+		font-size: var(--fs-xl);
+		line-height: 1;
+		box-shadow: var(--shadow-md);
+	}
 
 	.skip-link {
 		position: fixed;
@@ -290,6 +320,15 @@
 		border-radius: var(--radius-base);
 		border: 1px solid var(--clr-divider-tertiary-on-bg-primary);
 		box-shadow: var(--shadow-lg);
+
+		// NavLink renders in a child component, so target its anchors globally
+		:global(a:not(.mobile-nav__cta)) {
+			width: 100%;
+			padding: var(--spacing-md);
+			font-size: var(--fs-md);
+			text-align: center;
+			border-radius: var(--radius-xs);
+		}
 
 		&__cta {
 			width: 100%;

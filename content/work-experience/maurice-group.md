@@ -1,8 +1,8 @@
 ---
-title: Head IT
+title: Senior IT
 description: Led all technology initiatives, focusing on internal operations and customer-facing platforms. Spearheaded the migration from Firebase to a self-hosted VPS, significantly reducing operational costs and enhancing system flexibility.
 duration: May 18, 2023 – Present
-company: Maurice Group
+company: Maurice Cakes & Events
 link: /work-experience/maurice-group
 order: 2
 technologies:
