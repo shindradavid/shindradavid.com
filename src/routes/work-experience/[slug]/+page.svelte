@@ -14,7 +14,7 @@
 
 <Seo title={frontmatter.title} description={frontmatter.description} />
 
-<main>
+<main class="work-experience-detail container">
 	<h1>{frontmatter.title}</h1>
 
 	<section class="overview">

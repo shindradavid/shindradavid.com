@@ -56,7 +56,7 @@
 
 <header class="header">
 	<a href="/" class="header__logo" aria-label="Shindra David, home">
-		<img src="/images/logo.webp" alt="" width="48" height="48" decoding="async" />
+		<img src="/images/avatar-2-icon.webp" alt="" width="48" height="48" decoding="async" />
 		<span>Shindra David</span>
 	</a>
 
@@ -84,6 +84,7 @@
 		aria-label={openDrawer ? 'Close navigation menu' : 'Open navigation menu'}
 		aria-expanded={openDrawer}
 		aria-controls="mobile-navigation"
+		data-mobile-navigation-toggle
 		onclick={() => (openDrawer = !openDrawer)}
 	>
 		<i class={openDrawer ? 'ri-close-line' : 'ri-menu-line'} aria-hidden="true"></i>
@@ -95,14 +96,14 @@
 		id="mobile-navigation"
 		class="mobile-nav"
 		aria-label="Mobile navigation"
-		use:detectClickOutside
+		use:detectClickOutside={{ ignore: '[data-mobile-navigation-toggle]' }}
 		onclickOutside={() => (openDrawer = false)}
 	>
 		<NavLink href="/" name="Home" />
-		<NavLink href="/my-work" name="Work" />
+		<NavLink href="/my-work" name="My work" />
 		<NavLink href="/services" name="Services" />
 		<NavLink href="/work-experience" name="Work experience" />
-		<NavLink href="/about-me" name="About" />
+		<NavLink href="/about-me" name="About me" />
 		<NavLink href="/blog" name="Blog" />
 		<a
 			href={getWhatsAppUrl()}
@@ -145,7 +146,7 @@
 		<div class="footer__main">
 			<div class="footer__brand">
 				<a href="/" class="footer__identity" aria-label="Shindra David, home">
-					<img src="/images/logo.webp" alt="" width="48" height="48" loading="lazy" />
+					<img src="/images/avatar-2-icon.webp" alt="" width="48" height="48" loading="lazy" />
 					<span>Shindra David</span>
 				</a>
 				<p>Full-stack developer building useful websites and business systems for growing SMEs.</p>
@@ -308,23 +309,30 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: var(--spacing-lg);
+		gap: var(--spacing-sm);
 		position: fixed;
 		z-index: utils.z('header', 'nav');
 		top: 92px;
 		left: 12px;
 		width: calc(100% - 24px);
+		max-height: calc(100dvh - 104px);
+		overflow-y: auto;
+		overscroll-behavior: contain;
 		background-color: var(--clr-bg-primary-alpha);
 		backdrop-filter: blur(14px);
-		padding: var(--spacing-xl);
+		padding: var(--spacing-md);
 		border-radius: var(--radius-base);
 		border: 1px solid var(--clr-divider-tertiary-on-bg-primary);
 		box-shadow: var(--shadow-lg);
 
 		// NavLink renders in a child component, so target its anchors globally
 		:global(a:not(.mobile-nav__cta)) {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			width: 100%;
-			padding: var(--spacing-md);
+			min-height: 44px;
+			padding: var(--spacing-sm) 12px;
 			font-size: var(--fs-md);
 			text-align: center;
 			border-radius: var(--radius-xs);
@@ -332,6 +340,12 @@
 
 		&__cta {
 			width: 100%;
+			min-height: 44px;
+			margin: 0;
+		}
+
+		:global(.theme-switcher) {
+			margin-block: 0;
 		}
 
 		@include utils.respond-to('lg-screens') {

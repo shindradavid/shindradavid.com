@@ -15,8 +15,8 @@
 	let {
 		title,
 		description = '',
-		ogImage = '/images/logo.webp',
-		ogImageAlt = 'Shindra David',
+		ogImage = '/images/avatar-2.png',
+		ogImageAlt = 'Illustrated portrait of Shindra David coding on a laptop',
 		type = 'website',
 		publishedOn,
 		structuredData
@@ -41,7 +41,7 @@
 					'@type': 'Person',
 					name: site.name,
 					url: site.url,
-					image: new URL('/images/logo.webp', site.url).toString(),
+					image: new URL('/images/avatar-2.png', site.url).toString(),
 					jobTitle: 'Full-stack developer',
 					address: { '@type': 'PostalAddress', addressCountry: 'UG' },
 					sameAs: [

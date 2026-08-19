@@ -12,6 +12,9 @@ serviceTypes:
   - business-system
 technologies: []
 client: Maurice School of Baking & Decoration
+role: Full-stack developer
+duration: Ongoing partnership
+liveUrl: https://www.mauriceschool.com
 isPublished: true
 ---
 

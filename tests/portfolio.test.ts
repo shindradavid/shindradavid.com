@@ -142,12 +142,24 @@ test('mobile navigation exposes state and supports Escape', async ({ page }) => 
 
 	const menuButton = page.getByRole('button', { name: 'Open navigation menu' });
 	await menuButton.click();
-	await expect(page.getByRole('navigation', { name: 'Mobile navigation' })).toBeVisible();
-	await expect(page.getByRole('button', { name: 'Close navigation menu' })).toHaveAttribute(
-		'aria-expanded',
-		'true'
-	);
+	const mobileNavigation = page.getByRole('navigation', { name: 'Mobile navigation' });
+	await expect(mobileNavigation).toBeVisible();
+	const closeButton = page.getByRole('button', { name: 'Close navigation menu' });
+	await expect(closeButton).toHaveAttribute('aria-expanded', 'true');
 
+	const navigationBox = await mobileNavigation.boundingBox();
+	expect(navigationBox).not.toBeNull();
+	expect(navigationBox!.height).toBeLessThan(590);
+	const linkHeights = await mobileNavigation
+		.getByRole('link')
+		.evaluateAll((links) => links.map((link) => link.getBoundingClientRect().height));
+	expect(linkHeights.every((height) => height >= 44)).toBe(true);
+
+	await closeButton.click();
+	await expect(mobileNavigation).toHaveCount(0);
+
+	await menuButton.click();
+	await expect(mobileNavigation).toBeVisible();
 	await page.keyboard.press('Escape');
 	await expect(page.getByRole('navigation', { name: 'Mobile navigation' })).toHaveCount(0);
 });
