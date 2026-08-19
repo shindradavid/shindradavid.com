@@ -26,13 +26,14 @@ test('featured project carousel supports manual navigation and project links', a
 
 	const carousel = page.getByRole('region', { name: 'Featured projects' });
 	await expect(carousel).toBeVisible();
-	await expect(
-		carousel.getByRole('link', { name: /View Maurice Cakes & Events.*case study/ })
-	).toHaveAttribute('href', '/my-work/maurice-cakes-and-events');
+	await expect(carousel.getByRole('link', { name: /View My Maurice.*case study/ })).toHaveAttribute(
+		'href',
+		'/my-work/maurice-cakes-and-events'
+	);
 
 	await carousel.getByRole('button', { name: 'Next featured project' }).click();
 	await expect(
-		carousel.getByRole('link', { name: /View Mr\. P Authentic Autoparts.*case study/ })
+		carousel.getByRole('link', { name: /View Maurice School of Baking.*case study/ })
 	).toBeVisible();
 
 	await carousel.getByRole('button', { name: /Show OHN'S Transportation/ }).click();
@@ -40,15 +41,18 @@ test('featured project carousel supports manual navigation and project links', a
 		carousel.getByRole('link', { name: /View OHN'S Transportation.*case study/ })
 	).toHaveAttribute('href', '/my-work/ohns-transportation-company-website');
 
-	await carousel.getByRole('button', { name: 'Next featured project' }).click();
+	await carousel.getByRole('button', { name: /Show Coordinates Travel & Tourism/ }).click();
 	await expect(
-		carousel.getByRole('link', { name: /View Maurice Cakes & Events.*case study/ })
-	).toBeVisible();
+		carousel.getByRole('link', { name: /View Coordinates Travel & Tourism.*case study/ })
+	).toHaveAttribute('href', '/my-work/coordinates-travel-and-tourism');
 
-	await carousel.getByRole('link', { name: /View Maurice Cakes & Events.*case study/ }).focus();
+	await carousel.getByRole('button', { name: 'Next featured project' }).click();
+	await expect(carousel.getByRole('link', { name: /View My Maurice.*case study/ })).toBeVisible();
+
+	await carousel.getByRole('link', { name: /View My Maurice.*case study/ }).focus();
 	await page.keyboard.press('ArrowLeft');
 	await expect(
-		carousel.getByRole('link', { name: /View OHN'S Transportation.*case study/ })
+		carousel.getByRole('link', { name: /View Coordinates Travel & Tourism.*case study/ })
 	).toBeVisible();
 });
 
@@ -86,8 +90,38 @@ test('featured project carousel stacks below the hero and supports touch swipes'
 	});
 
 	await expect(
-		carousel.getByRole('link', { name: /View Mr\. P Authentic Autoparts.*case study/ })
+		carousel.getByRole('link', { name: /View Maurice School of Baking.*case study/ })
 	).toBeVisible();
+});
+
+test('selected work and portfolio use the seven-project order with uncropped images', async ({
+	page
+}) => {
+	const expectedTitles = [
+		'My Maurice — E-commerce & Bakery Management System',
+		'Maurice School of Baking & Decoration',
+		"OHN'S Transportation — Website & Mobile Apps",
+		'Drew Tech Store — E-commerce & Tech Services',
+		'Mr. P Authentic Autoparts — E-commerce & Inventory',
+		'Preziosa African Safaris',
+		'Coordinates Travel & Tourism'
+	];
+
+	await page.goto('/');
+	const selectedWork = page.locator('#featured-work');
+	await expect(selectedWork.locator('.project-card')).toHaveCount(7);
+	await expect(selectedWork.locator('.project-title')).toHaveText(expectedTitles);
+
+	const firstImage = selectedWork.locator('.project-image').first();
+	await expect(firstImage).toHaveJSProperty('complete', true);
+	expect(await firstImage.evaluate((image) => getComputedStyle(image).objectFit)).toBe('contain');
+	const frameBox = await selectedWork.locator('.project-image-frame').first().boundingBox();
+	expect(frameBox).not.toBeNull();
+	expect(frameBox!.width / frameBox!.height).toBeCloseTo(2, 1);
+
+	await page.goto('/my-work');
+	const portfolioTitles = await page.locator('.project-title').allTextContents();
+	expect(portfolioTitles.slice(0, 7)).toEqual(expectedTitles);
 });
 
 test('portfolio filters update the visible project set', async ({ page }) => {
@@ -121,7 +155,7 @@ test('mobile navigation exposes state and supports Escape', async ({ page }) => 
 test('project pages expose project-specific metadata', async ({ page }) => {
 	await page.goto('/my-work/maurice-cakes-and-events');
 
-	await expect(page).toHaveTitle(/Maurice Cakes & Events/);
+	await expect(page).toHaveTitle(/My Maurice/);
 	await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
 		'href',
 		'https://shindradavid.com/my-work/maurice-cakes-and-events'

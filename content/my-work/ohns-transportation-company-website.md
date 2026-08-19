@@ -1,11 +1,12 @@
 ---
-title: OHN'S Transportation Company Website
-description: OHN'S Transportation Company Marketing Website
+title: OHN'S Transportation — Website & Mobile Apps
+description: Website and mobile transport applications for OHN'S Transportation Company
 thumbnailUrl: /images/my-work/ohns-transportation-company-website/thumbnail.webp
 publishedOn: 2025-10-11
 category: software
 isFeatured: true
 featuredRank: 3
+portfolioRank: 3
 serviceTypes:
   - business-website
   - mobile-app

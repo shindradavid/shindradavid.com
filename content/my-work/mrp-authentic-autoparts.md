@@ -1,11 +1,12 @@
 ---
-title: Mr. P Authentic Autoparts Website & Inventory System
-description: Marketing website with inventory management system for a premium auto parts supplier
-thumbnailUrl: /images/my-work/mrp-authentic-autoparts/cover.webp
+title: Mr. P Authentic Autoparts — E-commerce & Inventory
+description: E-commerce website with inventory management for a mechanical car parts supplier
+thumbnailUrl: /images/my-work/mrp-authentic-autoparts/thumbnail.webp
 publishedOn: 2026-03-31
 category: software
 isFeatured: true
-featuredRank: 2
+featuredRank: 5
+portfolioRank: 5
 serviceTypes:
   - business-website
   - business-system

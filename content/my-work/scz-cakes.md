@@ -11,7 +11,7 @@ technologies:
   - React Native
 client: SCZ Cakes
 liveUrl: https://sczcakes.com
-isPublished: true
+isPublished: false
 ---
 
 ## Project Overview

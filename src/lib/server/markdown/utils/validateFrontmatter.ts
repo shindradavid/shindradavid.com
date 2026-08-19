@@ -98,6 +98,12 @@ export function validateProjectFrontmatter(
 	) {
 		fail(source, 'featuredRank', 'must be a positive integer');
 	}
+	if (
+		data.portfolioRank !== undefined &&
+		(!Number.isInteger(data.portfolioRank) || (data.portfolioRank as number) <= 0)
+	) {
+		fail(source, 'portfolioRank', 'must be a positive integer');
+	}
 	if (data.isFeatured === true && data.featuredRank === undefined) {
 		fail(source, 'featuredRank', 'is required when "isFeatured" is true');
 	}

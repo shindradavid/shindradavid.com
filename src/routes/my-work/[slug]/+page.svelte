@@ -36,13 +36,7 @@
 	</header>
 
 	<figure class="thumbnail">
-		<img
-			src={frontmatter.thumbnailUrl}
-			alt="Preview of {frontmatter.title}"
-			width="1024"
-			height="576"
-			fetchpriority="high"
-		/>
+		<img src={frontmatter.thumbnailUrl} alt="Preview of {frontmatter.title}" fetchpriority="high" />
 	</figure>
 
 	<section class="overview" aria-label="Project details">
@@ -52,12 +46,14 @@
 			{#if frontmatter.duration}<div>
 					<span>Duration</span><strong>{frontmatter.duration}</strong>
 				</div>{/if}
-			<div>
-				<span>Technologies</span>
-				<ul>
-					{#each frontmatter.technologies as tech}<li>{tech}</li>{/each}
-				</ul>
-			</div>
+			{#if frontmatter.technologies.length}
+				<div>
+					<span>Technologies</span>
+					<ul>
+						{#each frontmatter.technologies as tech}<li>{tech}</li>{/each}
+					</ul>
+				</div>
+			{/if}
 		</div>
 
 		{#if frontmatter.liveUrl || frontmatter.githubUrl || frontmatter.playStoreUrl || frontmatter.appStoreUrl}
@@ -185,13 +181,15 @@
 	.thumbnail {
 		overflow: hidden;
 		border-radius: var(--radius-sm);
-		background: var(--clr-bg-secondary);
-		aspect-ratio: 16 / 9;
+		background: var(--clr-bg-tertiary);
+		aspect-ratio: 2 / 1;
 
 		img {
+			display: block;
 			width: 100%;
 			height: 100%;
-			object-fit: cover;
+			object-fit: contain;
+			object-position: center top;
 		}
 	}
 

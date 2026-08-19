@@ -5,6 +5,7 @@ import fs from 'fs-extra';
 import grayMatter from 'gray-matter';
 
 import type { Project, ProjectFrontmatter } from '$lib/types';
+import { sortPortfolioProjects } from '$lib/utils/projects';
 import { validateProjectFrontmatter } from './validateFrontmatter';
 
 export default async () => {
@@ -28,13 +29,7 @@ export default async () => {
 			});
 		}
 
-		posts = posts
-			.filter((post) => post.isPublished)
-			.sort((firstItem, secondItem) => {
-				return (
-					new Date(secondItem.publishedOn).getTime() - new Date(firstItem.publishedOn).getTime()
-				);
-			});
+		posts = sortPortfolioProjects(posts.filter((post) => post.isPublished));
 
 		return posts;
 	} catch (err) {

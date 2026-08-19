@@ -42,6 +42,7 @@ export interface ProjectFrontmatter {
 	serviceTypes?: ServiceType[];
 	isFeatured?: boolean;
 	featuredRank?: number;
+	portfolioRank?: number;
 	outcomes?: string[];
 	testimonial?: Testimonial;
 	gallery?: Array<{ src: string; caption?: string }>;

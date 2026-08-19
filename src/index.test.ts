@@ -7,21 +7,39 @@ import parseMarkdown from '$lib/server/markdown/utils/parseMarkdown';
 import { getWhatsAppUrl, services, site } from '$lib/site';
 import type { ProjectFrontmatter } from '$lib/types';
 import { isPathActive } from '$lib/utils/navigation';
-import { getFeaturedProjects, getProjectServiceTypes } from '$lib/utils/projects';
+import {
+	getFeaturedProjects,
+	getProjectServiceTypes,
+	sortPortfolioProjects
+} from '$lib/utils/projects';
 
 describe('portfolio content', () => {
-	it('loads published projects with valid images and three featured projects', async () => {
+	it('loads the seven ranked featured projects in the requested order', async () => {
 		const projects = await getMyWork();
 		const featuredProjects = getFeaturedProjects(projects);
+		const expectedSlugs = [
+			'maurice-cakes-and-events',
+			'maurice-school-of-baking-and-decoration',
+			'ohns-transportation-company-website',
+			'drew-tech-store',
+			'mrp-authentic-autoparts',
+			'preziosa-african-safaris',
+			'coordinates-travel-and-tourism'
+		];
 
 		expect(projects.length).toBeGreaterThan(0);
-		expect(featuredProjects.map((project) => project.slug)).toEqual([
-			'maurice-cakes-and-events',
-			'mrp-authentic-autoparts',
-			'ohns-transportation-company-website'
-		]);
+		expect(projects.slice(0, 7).map((project) => project.slug)).toEqual(expectedSlugs);
+		expect(featuredProjects.map((project) => project.slug)).toEqual(expectedSlugs);
 		expect(featuredProjects.every((project) => project.isFeatured === true)).toBe(true);
-		expect(featuredProjects.map((project) => project.featuredRank)).toEqual([1, 2, 3]);
+		expect(featuredProjects.map((project) => project.featuredRank)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+		expect(projects.slice(0, 7).map((project) => project.portfolioRank)).toEqual([
+			1, 2, 3, 4, 5, 6, 7
+		]);
+		expect(
+			featuredProjects.every((project) =>
+				fs.existsSync(path.join(process.cwd(), 'static', project.thumbnailUrl))
+			)
+		).toBe(true);
 	});
 
 	it('rejects missing featured projects and duplicate featured ranks', async () => {
@@ -42,6 +60,20 @@ describe('portfolio content', () => {
 		expect(() => getFeaturedProjects(duplicatedRankProjects)).toThrow(
 			'Featured project rank 1 is used more than once'
 		);
+	});
+
+	it('rejects duplicate portfolio ranks and leaves unranked projects after ranked work', async () => {
+		const projects = await getMyWork();
+		const duplicatedRankProjects = projects.map((project) =>
+			project.slug === 'maurice-school-of-baking-and-decoration'
+				? { ...project, portfolioRank: 1 }
+				: project
+		);
+
+		expect(() => sortPortfolioProjects(duplicatedRankProjects)).toThrow(
+			'Portfolio project rank 1 is used more than once'
+		);
+		expect(projects.slice(7).every((project) => project.portfolioRank === undefined)).toBe(true);
 	});
 
 	it('infers useful service filters for legacy project content', async () => {

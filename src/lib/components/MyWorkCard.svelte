@@ -6,13 +6,11 @@
 
 <a href="/my-work/{project.slug}" class="project-card-link">
 	<article class="project-card">
-		<div class="aspect-ratio-16x9">
+		<div class="project-image-frame">
 			<img
 				src={project.thumbnailUrl}
 				alt="Preview of {project.title}"
 				class="project-image"
-				width="1024"
-				height="576"
 				loading="lazy"
 				decoding="async"
 			/>
@@ -62,12 +60,21 @@
 				box-shadow: var(--shadow-lg);
 			}
 
-			.project-image {
-				transition: transform var(--animation-speed-normal) var(--animation-fn-ease-out);
-			}
+			.project-image-frame {
+				display: grid;
+				width: 100%;
+				aspect-ratio: 2 / 1;
+				overflow: hidden;
+				place-items: center;
+				background: var(--clr-bg-tertiary);
 
-			&:hover .project-image {
-				transform: scale(1.025);
+				.project-image {
+					display: block;
+					width: 100%;
+					height: 100%;
+					object-fit: contain;
+					object-position: center top;
+				}
 			}
 
 			.project-content {

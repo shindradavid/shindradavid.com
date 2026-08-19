@@ -104,8 +104,6 @@
 							<img
 								src={project.thumbnailUrl}
 								alt="Preview of {project.title}"
-								width="1024"
-								height="576"
 								loading={index === 0 ? 'eager' : 'lazy'}
 								fetchpriority={index === 0 ? 'high' : 'auto'}
 								decoding="async"
@@ -243,8 +241,9 @@
 
 		&__slide {
 			flex: 0 0 100%;
-			aspect-ratio: 16 / 9;
+			aspect-ratio: 2 / 1;
 			overflow: hidden;
+			background: var(--clr-bg-tertiary);
 
 			&:focus-visible {
 				outline: 3px solid var(--clr-accent-1);
@@ -255,7 +254,8 @@
 				display: block;
 				width: 100%;
 				height: 100%;
-				object-fit: cover;
+				object-fit: contain;
+				object-position: center top;
 			}
 		}
 

@@ -27,6 +27,35 @@ export function getFeaturedProjects(projects: Project[]): Project[] {
 	);
 }
 
+export function sortPortfolioProjects(projects: Project[]): Project[] {
+	const ranks = new Set<number>();
+
+	for (const project of projects) {
+		const rank = project.portfolioRank;
+		if (rank === undefined) continue;
+		if (!Number.isInteger(rank) || rank <= 0) {
+			throw new Error(`Portfolio project "${project.slug}" must have a positive integer rank.`);
+		}
+		if (ranks.has(rank)) {
+			throw new Error(`Portfolio project rank ${rank} is used more than once.`);
+		}
+		ranks.add(rank);
+	}
+
+	return projects.toSorted((firstProject, secondProject) => {
+		const firstRank = firstProject.portfolioRank;
+		const secondRank = secondProject.portfolioRank;
+
+		if (firstRank !== undefined && secondRank !== undefined) return firstRank - secondRank;
+		if (firstRank !== undefined) return -1;
+		if (secondRank !== undefined) return 1;
+
+		const dateDifference =
+			new Date(secondProject.publishedOn).getTime() - new Date(firstProject.publishedOn).getTime();
+		return dateDifference || firstProject.slug.localeCompare(secondProject.slug);
+	});
+}
+
 export function getProjectServiceTypes(project: Project): ServiceType[] {
 	if (project.serviceTypes?.length) return project.serviceTypes;
 	if (project.category === 'design') return ['design'];

@@ -7,5 +7,5 @@ category: design
 technologies:
   - Figma
 client: Wild Palace Safari Lodge
-isPublished: true
+isPublished: false
 ---

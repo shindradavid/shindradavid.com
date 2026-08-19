@@ -1,11 +1,12 @@
 ---
-title: Maurice Cakes & Events — E-commerce & Operations Platform
+title: My Maurice — E-commerce & Bakery Management System
 description: A connected commerce and operations platform that helps a busy bakery manage orders, customer communication, payments, fulfilment, and daily finances.
-thumbnailUrl: /images/my-work/maurice-cakes-and-events/cover.webp
+thumbnailUrl: /images/my-work/maurice-cakes-and-events/thumbnail.webp
 publishedOn: 2026-03-31
 category: software
 isFeatured: true
 featuredRank: 1
+portfolioRank: 1
 serviceTypes:
   - ecommerce
   - business-system

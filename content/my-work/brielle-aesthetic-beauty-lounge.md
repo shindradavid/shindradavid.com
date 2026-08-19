@@ -9,7 +9,7 @@ technologies:
   - SvelteKit
 client: Home Dollar Marketing
 liveUrl: https://brielleaestheticbeautylounge.com
-isPublished: true
+isPublished: false
 ---
 
 ## Project Overview
