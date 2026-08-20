@@ -137,14 +137,14 @@ describe('site configuration', () => {
 		expect(url.searchParams.get('text')).toBe('A website & shop');
 	});
 
-	it('defines the three core SME services', () => {
+	it('defines the three core SME services in promotional order', () => {
 		expect(services.map((service) => service.slug)).toEqual([
-			'business-website',
-			'ecommerce',
-			'business-system'
+			'mobile-app',
+			'business-system',
+			'business-website'
 		]);
 		expect(services.map((service) => service.startingPriceUGX)).toEqual([
-			500_000, 2_000_000, 2_000_000
+			2_500_000, 2_000_000, 550_000
 		]);
 	});
 });

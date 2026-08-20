@@ -3,9 +3,9 @@ import type { Service } from '$lib/types';
 export const site = {
 	name: 'Shindra David',
 	url: 'https://shindradavid.com',
-	title: 'Shindra David — Websites & Business Systems for Ugandan SMEs',
+	title: 'Shindra David — Mobile Apps, Business Systems & Websites for Ugandan SMEs',
 	description:
-		'I design and build fast business websites, online stores, and custom operations software for growing Ugandan businesses.',
+		'I design and build Android and iOS apps, custom business systems, and fast websites for growing Ugandan businesses.',
 	location: 'Uganda',
 	twitterHandle: '@shindradavid',
 	whatsappNumber: '256782346200'
@@ -13,30 +13,17 @@ export const site = {
 
 export const services: Service[] = [
 	{
-		slug: 'business-website',
-		title: 'Business websites',
+		slug: 'mobile-app',
+		title: 'Mobile app development',
 		description:
-			'Fast, trustworthy websites that explain your offer clearly and turn visitors into enquiries.',
-		idealFor: 'Service businesses, hospitality brands, NGOs and growing SMEs',
+			'Custom Android and iOS applications designed around your customers and business workflows.',
+		idealFor: 'Businesses that need customer-facing apps or mobile tools for their teams',
 		deliverables: [
-			'Strategy and content structure',
-			'Responsive design and development',
-			'SEO and analytics setup'
+			'Android and iOS app development',
+			'Mobile interface and user-flow design',
+			'API integration, testing and launch support'
 		],
-		startingPriceUGX: 500_000
-	},
-	{
-		slug: 'ecommerce',
-		title: 'E-commerce platforms',
-		description:
-			'Online ordering experiences designed around your products, customers and fulfilment process.',
-		idealFor: 'Retailers, bakeries and businesses ready to sell online',
-		deliverables: [
-			'Product catalogue and checkout',
-			'Payments and order workflows',
-			'Training and launch support'
-		],
-		startingPriceUGX: 2_000_000
+		startingPriceUGX: 2_500_000
 	},
 	{
 		slug: 'business-system',
@@ -50,6 +37,19 @@ export const services: Service[] = [
 			'Deployment and ongoing support'
 		],
 		startingPriceUGX: 2_000_000
+	},
+	{
+		slug: 'business-website',
+		title: 'Business websites',
+		description:
+			'Fast, trustworthy websites that explain your offer clearly and turn visitors into enquiries.',
+		idealFor: 'Service businesses, hospitality brands, NGOs and growing SMEs',
+		deliverables: [
+			'Strategy and content structure',
+			'Responsive design and development',
+			'SEO and analytics setup'
+		],
+		startingPriceUGX: 550_000
 	}
 ];
 

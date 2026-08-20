@@ -149,7 +149,10 @@
 					<img src="/images/avatar-2-icon.webp" alt="" width="48" height="48" loading="lazy" />
 					<span>Shindra David</span>
 				</a>
-				<p>Full-stack developer building useful websites and business systems for growing SMEs.</p>
+				<p>
+					Full-stack developer building useful mobile apps, business systems and websites for
+					growing SMEs.
+				</p>
 				<p class="footer__location">
 					<i class="ri-map-pin-2-line" aria-hidden="true"></i> Kampala, Uganda
 				</p>

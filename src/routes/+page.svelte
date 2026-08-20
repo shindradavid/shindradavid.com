@@ -11,7 +11,7 @@
 		project.testimonial ? [project.testimonial] : []
 	);
 	const projectMessage =
-		'Hi Shindra, I found your portfolio and would like to discuss a website or business system for my business.';
+		'Hi Shindra, I found your portfolio and would like to discuss a mobile app, business system or website for my business.';
 </script>
 
 <Seo title={site.title} description={site.description} />
@@ -20,10 +20,10 @@
 	<section class="hero container">
 		<div class="hero__content">
 			<span class="eyebrow">Full-stack developer in Uganda</span>
-			<h1>Websites and business systems that help Ugandan SMEs grow.</h1>
+			<h1>Mobile apps, business systems and websites that help Ugandan SMEs grow.</h1>
 			<p>
-				I design and build fast business websites, online stores and custom operations software—from
-				idea to launch and ongoing support.
+				I design and build Android and iOS apps, custom operations software and fast business
+				websites—from idea to launch and ongoing support.
 			</p>
 			<div class="hero__actions">
 				<a
@@ -38,7 +38,7 @@
 				<a href="#featured-work" class="btn secondary hero__secondary">See client work</a>
 			</div>
 			<p class="hero__note">
-				<span aria-hidden="true">●</span> Available for selected website and software projects
+				<span aria-hidden="true">●</span> Available for selected mobile app, software and website projects
 			</p>
 		</div>
 

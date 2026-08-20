@@ -6,7 +6,7 @@ test('homepage presents the client offer and conversion path', async ({ page }) 
 	await expect(
 		page.getByRole('heading', {
 			level: 1,
-			name: 'Websites and business systems that help Ugandan SMEs grow.'
+			name: 'Mobile apps, business systems and websites that help Ugandan SMEs grow.'
 		})
 	).toBeVisible();
 	await expect(

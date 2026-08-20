@@ -29,8 +29,8 @@
 </script>
 
 <Seo
-	title="Web Development Services & Pricing | Shindra David"
-	description="Business websites from UGX 500,000 and custom e-commerce platforms and business systems from UGX 2,000,000 for growing Ugandan SMEs."
+	title="Mobile App, Business System & Website Services | Shindra David"
+	description="Android and iOS apps from UGX 2,500,000, custom business systems from UGX 2,000,000, and business websites from UGX 550,000."
 />
 
 <main class="services-page">
@@ -39,8 +39,8 @@
 			<span class="eyebrow">Services</span>
 			<h1>Digital products built around how your business works.</h1>
 			<p>
-				From a focused business website to a custom operations platform, I design and build
-				practical software that supports growth without adding unnecessary complexity.
+				From Android and iOS apps to custom operations platforms and focused business websites, I
+				build practical software that supports growth without adding unnecessary complexity.
 			</p>
 			<div class="services-hero__actions">
 				<a
